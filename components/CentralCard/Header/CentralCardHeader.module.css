@@ -1,0 +1,28 @@
+.header {
+  height: 12%;
+  width: 100%;
+  background-color: #f9f5f3;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 0.98rem;
+}
+
+.logo {
+  height: 55%;
+}
+
+
+.header-buttons {
+  display: flex;
+  height: 100%;
+}
+
+@media (max-width: 1000px) {
+  .header {
+    height: 8%;
+    font-size: 0.8rem;
+  }
+}

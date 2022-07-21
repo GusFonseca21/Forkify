@@ -1,0 +1,59 @@
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+  border-bottom-right-radius: 15px;
+  /* width: 100%; */
+}
+
+.body::-webkit-scrollbar {
+  width: 0.3rem;
+}
+.body::-webkit-scrollbar-thumb {
+  background: rgb(49, 120, 198);
+  border-radius: 100px;
+}
+
+.body::-webkit-scrollbar-track {
+  background-color: #aeaeb1;
+  border-radius: 100px;
+  margin-bottom: 0.8rem;
+}
+
+.recipe-ingredients-title {
+  text-transform: uppercase;
+  margin: 2rem 0 2rem 0;
+  font-size: 1.2rem;
+  color: rgb(49, 120, 198);
+}
+
+.ingredients {
+  padding: 1.5rem;
+}
+
+.ingredients-list {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem 3rem;
+}
+
+.check-icon {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+  color: rgb(49, 120, 198);
+}
+
+.single-ingredient {
+  display: flex;
+  justify-self: start;
+}
+
+@media (max-width: 604px) {
+  .ingredients-list {
+    grid-template-columns: 1fr;
+  }
+}

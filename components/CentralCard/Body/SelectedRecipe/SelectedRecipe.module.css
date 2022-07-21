@@ -1,0 +1,27 @@
+.body {
+  position: relative;
+  width: 100%;
+  /* max-width:max-content; */
+  display: flex;
+  flex-direction: column;
+  border-bottom-right-radius: inherit;
+  background-color: #f1f2f6;
+}
+
+.hide-show-found-recipes-button {
+  z-index: 1;
+  position: absolute;
+  top: 10%;
+  left: 2%;
+  background-color: rgb;
+  border-radius: 50px;
+  color: #fff;
+
+  width: 1.9rem;
+  height: 1.9rem;
+}
+
+.hide-show-found-recipes-button:hover,
+.hide-show-found-recipes-button:active {
+  cursor: pointer;
+}

@@ -1,0 +1,97 @@
+.bookmarks-button {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  max-width: 100%;
+  padding: 1.5rem;
+  transition: all 300ms;
+  color: #596474;
+  position: relative;
+}
+
+.bookmarks-button:hover,
+.bookmarks-button:active {
+  background-color: #dfe4ea;
+  cursor: pointer;
+}
+
+.bookmarks-button-clicked {
+  background-color: #dfe4ea !important;
+}
+
+.bookmark-icon {
+  margin-right: 0.4rem;
+  color: rgb(49, 120, 198);
+}
+
+.bookmarked-recipes {
+  visibility: hidden;
+  position: absolute;
+  z-index: 2;
+  right: 0rem;
+  top: 12%;
+  background-color: #f9f5f3;
+  padding: 1rem 0 1rem 0;
+  max-height: 19rem;
+  overflow-y: scroll;
+}
+
+.bookmarked-recipes::-webkit-scrollbar {
+  width: 0.3rem;
+}
+.bookmarked-recipes::-webkit-scrollbar-thumb {
+  background: rgb(49, 120, 198);
+  border-radius: 100px;
+}
+
+.bookmarked-recipes::-webkit-scrollbar-track {
+  background-color: #d9dadd;
+  border-radius: 100px;
+}
+
+.bookmarked-recipes,
+.bookmarks-button + .bookmarked-recipes {
+  visibility: 0;
+  opacity: 0;
+  transition: all 500ms ease;
+}
+
+.bookmarked-recipes:hover,
+.bookmarks-button:hover + .bookmarked-recipes {
+  visibility: visible;
+  opacity: 1;
+}
+
+.teste {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.recipes-list {
+  list-style-type: none;
+}
+
+@media (max-width: 1000px) {
+  .bookmarked-recipes {
+    top: 8%;
+  }
+}
+
+@media (max-width: 600px) {
+  .bookmarks-button {
+    padding: 1rem;
+  }
+  .bookmarks-text {
+    display: none;
+  }
+  .bookmark-icon {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+}
+
+@media (max-width: 370px) {
+  .bookmarks-button {
+    padding: 0.5rem;
+  }
+}

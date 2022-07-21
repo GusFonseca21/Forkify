@@ -1,0 +1,29 @@
+.card {
+  background-color: #fff;
+  width: 80rem;
+  height: 100vh;
+  border-radius: 15px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    position: relative;
+}
+
+@media (max-width: 1200px) {
+  .card {
+    max-width: 100%;
+    height: 100%;
+    border-radius: 0%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .card {
+    height: 100vh;
+  }
+}
+
+@media (max-width: 415px) {
+.card {
+  height: 100vh;
+}
+}

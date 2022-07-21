@@ -1,0 +1,37 @@
+.footer {
+  font-size: 0.9rem;
+  color: #b2bec3;
+  height: 7rem;
+  padding: 1.1rem;
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+}
+
+.footer-text-gustavo,
+.footer-text-forkify {
+  display: flex;
+  justify-content: center;
+}
+
+.footer-icon {
+  margin-left: 0.4rem;
+  font-size: 1.4rem;
+}
+
+.footer-icon:hover {
+  color: rgb(97, 218, 251);
+  cursor: pointer;
+}
+
+@media (max-width: 830px) {
+  .footer {
+    font-size: 0.85rem;
+  }
+
+  .footer-icon {
+    font-size: 1.2rem;
+  }
+}

@@ -1,0 +1,39 @@
+.add-recipe-button {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  transition: all 300ms ease;
+  color: #596474;
+  max-width: 100%;
+}
+
+.add-recipe-button:hover,
+.add-recipe-button:active {
+  background-color: #dfe4ea;
+  cursor: pointer;
+}
+
+.add-recipe-icon {
+  margin-right: 0.4rem;
+  color: rgb(49, 120, 198);
+}
+
+@media (max-width: 600px) {
+  .add-recipe-button {
+    padding: 1rem;
+  }
+  .add-recipe-text {
+    display: none;
+  }
+  .add-recipe-icon {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+}
+
+@media (max-width: 370px) {
+  .add-recipe-button {
+    padding: 0.3rem;
+  }
+}
+
