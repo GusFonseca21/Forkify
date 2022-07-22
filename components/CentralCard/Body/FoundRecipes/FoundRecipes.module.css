@@ -4,6 +4,24 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
+}
+
+.hide-show-found-recipes-button {
+  z-index: 10;
+  position: absolute;
+  top: 2%;
+  left: 100%;
+  border-radius: 50px;
+  color: #fff;
+
+  width: 1.9rem;
+  height: 1.9rem;
+}
+
+.hide-show-found-recipes-button:hover,
+.hide-show-found-recipes-button:active {
+  cursor: pointer;
 }
 
 .recipes {
@@ -27,10 +45,12 @@
     z-index: 100;
     position: absolute;
     transform: translateX(-100%);
-    top: -0.2%;
+    top: -0.5%;
     transition: all 300ms ease;
     width: max-content;
     background-color: white;
     /* transform: translateX(0%); */
+    max-width: 70%;
+    max-height: 78.5vh;
   }
 }

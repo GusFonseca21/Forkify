@@ -2,9 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-y: scroll;
   border-bottom-right-radius: 15px;
-  /* width: 100%; */
 }
 
 .body::-webkit-scrollbar {
@@ -47,4 +45,10 @@
 .single-ingredient {
   display: flex;
   justify-self: start;
+}
+
+@media (max-width: 375px) {
+  .ingredients-list {
+    grid-template-columns: 1fr;
+  }
 }

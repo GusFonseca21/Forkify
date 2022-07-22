@@ -1,34 +1,30 @@
 .body {
   position: relative;
   width: 100%;
-  max-height: 76vh;
+  height: 76vh;
   display: flex;
   flex-direction: column;
   border-bottom-right-radius: inherit;
   background-color: #f1f2f6;
+  overflow-y: scroll;
+}
+.body::-webkit-scrollbar {
+  width: 0.3rem;
+}
+.body::-webkit-scrollbar-thumb {
+  background: rgb(49, 120, 198);
 }
 
-.hide-show-found-recipes-button {
-  z-index: 1;
-  position: absolute;
-  top: 10%;
-  left: 2%;
-  background-color: rgb;
-  border-radius: 50px;
-  color: #fff;
-
-  width: 1.9rem;
-  height: 1.9rem;
+.body::-webkit-scrollbar-track {
+  background-color: #aeaeb1;
 }
 
-.hide-show-found-recipes-button:hover,
-.hide-show-found-recipes-button:active {
-  cursor: pointer;
-}
 
-/* @media (max-width: 1000px) {
+
+@media (max-width: 1000px) {
   .body {
-    filter: blur(1.5px);
-    pointer-events: none;
+    /* filter: blur(1.5px); */
+    /* pointer-events: none; */
+    height: 78vh;
   }
-} */
+}
