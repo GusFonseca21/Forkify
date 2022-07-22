@@ -27,7 +27,6 @@
 .bookmarked-recipes {
   visibility: hidden;
   position: absolute;
-  /* z-index: 2; */
   right: 0rem;
   top: 100%;
   background-color: #f9f5f3;
@@ -69,12 +68,6 @@
 
 .recipes-list {
   list-style-type: none;
-}
-
-@media (max-width: 1000px) {
-  .bookmarked-recipes {
-    top: 8%;
-  }
 }
 
 @media (max-width: 663px) {
