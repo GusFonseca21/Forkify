@@ -18,7 +18,7 @@
   color: rgb(49, 120, 198);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 663px) {
   .add-recipe-button {
     padding: 1rem;
   }

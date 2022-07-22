@@ -8,11 +8,11 @@ const HowToCookIt = () => {
       <h3 className={classes["how-to-title"]}>HOW TO COOK IT</h3>
 
       <p className={classes["how-to-paragraph"]}>
-        This recipe was carefully designed and tested by <b>Simply Recipes</b>.
+        This recipe was carefully designed and tested by <b>Simply Recipes</b>. Please check out directions at their website.
       </p>
       <p className={classes["how-to-paragraph"]}>
         {" "}
-        Please check out directions at their website.
+        
       </p>
       <a
         className={classes["directions-button"]}

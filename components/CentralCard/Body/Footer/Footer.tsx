@@ -8,7 +8,7 @@ const Footer = () => {
     <footer className={classes.footer}>
       <div className={classes["footer-text"]}>
         <div className={classes["footer-text-gustavo"]}>
-          <span>Criado por Gustavo Fonseca</span>
+          <span>Criado por Gustavo Fonseca de Araújo</span>
           <a
             href="https://github.com/GusFonseca21"
             target="_blank"
@@ -18,7 +18,7 @@ const Footer = () => {
           </a>
         </div>
         <div className={classes["footer-text-forkify"]}>
-          <span>Inspirado em Forkify</span>
+          <span>Inspirado em Forkify, de Jonas Schmedtmann</span>
           <a
             href="https://forkify-v2.netlify.app/"
             target="_blank"

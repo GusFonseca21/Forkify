@@ -1,7 +1,7 @@
 .body {
   position: relative;
   width: 100%;
-  /* max-width:max-content; */
+  max-height: 76vh;
   display: flex;
   flex-direction: column;
   border-bottom-right-radius: inherit;
@@ -25,3 +25,10 @@
 .hide-show-found-recipes-button:active {
   cursor: pointer;
 }
+
+/* @media (max-width: 1000px) {
+  .body {
+    filter: blur(1.5px);
+    pointer-events: none;
+  }
+} */

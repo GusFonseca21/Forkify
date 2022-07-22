@@ -35,9 +35,9 @@ const SelectedRecipe = () => {
           onClick={hideShowFoundRecipesHandler}
         />
       )}
-      <ImageAndTitle />
-      <RecipeDetails />
-      <RecipeIngredients />
+        <ImageAndTitle />
+        <RecipeDetails />
+        <RecipeIngredients />
     </div>
   );
 };

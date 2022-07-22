@@ -5,10 +5,10 @@ import CentralCardBody from "./Body/CentralCardBody";
 
 const CentralCard = () => {
   return (
-    <div className={classes.card}>
-      <CentralCardHeader />
-      <CentralCardBody />
-    </div>
+      <div className={classes.card}>
+        <CentralCardHeader />
+        <CentralCardBody />
+      </div>
   );
 };
 

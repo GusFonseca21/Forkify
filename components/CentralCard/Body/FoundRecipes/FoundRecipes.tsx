@@ -21,7 +21,7 @@ const FoundRecipes = () => {
         <Recipe />
         <Recipe />
       </div>
-      <Footer />
+
     </div>
   );
 };

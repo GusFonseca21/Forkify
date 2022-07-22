@@ -27,7 +27,7 @@
   border-radius: 50px;
   height: inherit;
   width: 13rem;
-  /* min-width: 6rem; */
+  min-width: 6rem;
   background-image: linear-gradient(
     to bottom right,
     rgb(49, 120, 198),
@@ -79,31 +79,19 @@
 
 @media (max-width: 800px) {
   .search-button {
-    width: 8rem;
+    width: 11rem;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 615px) {
   .form {
     width: 15rem;
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 530px) {
   .form {
-    width: 10rem;
-  }
-  .search-button {
-    background-image: none;
-  }
-  .search-button-text {
-    display: none;
-  }
-  .search-icon {
-    font-size: 1.2rem;
-    color: rgb(49, 120, 198);
-    margin: 0;
-    width: 1rem;
+    max-width: 13rem;
   }
 }
 
@@ -111,4 +99,6 @@
   .search-button {
     display: none;
   }
+
+
 }

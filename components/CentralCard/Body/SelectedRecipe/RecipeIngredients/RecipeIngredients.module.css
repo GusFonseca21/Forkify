@@ -12,13 +12,10 @@
 }
 .body::-webkit-scrollbar-thumb {
   background: rgb(49, 120, 198);
-  border-radius: 100px;
 }
 
 .body::-webkit-scrollbar-track {
   background-color: #aeaeb1;
-  border-radius: 100px;
-  margin-bottom: 0.8rem;
 }
 
 .recipe-ingredients-title {
@@ -50,10 +47,4 @@
 .single-ingredient {
   display: flex;
   justify-self: start;
-}
-
-@media (max-width: 604px) {
-  .ingredients-list {
-    grid-template-columns: 1fr;
-  }
 }
