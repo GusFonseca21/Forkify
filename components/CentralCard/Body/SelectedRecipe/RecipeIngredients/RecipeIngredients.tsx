@@ -34,9 +34,9 @@ const RecipeIngredients = () => {
         <div key={Date()} className={classes["ingredients-list"]}>
           {DUMMY_INGREDIENTS.map((ingredient) => (
             <div className={classes["single-ingredient"]}>
-              <i className={classes["check-icon"]}>
+              <div className={classes["check-icon"]}>
                 <AiOutlineCheck />
-              </i>
+              </div>
               <div className={classes["ingredient-quantity"]}>
                 {ingredient.quantity}
               </div>
