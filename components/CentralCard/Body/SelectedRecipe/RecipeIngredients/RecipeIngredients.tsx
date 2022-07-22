@@ -23,6 +23,7 @@ const DUMMY_INGREDIENTS = [
   { quantity: "112 pacotes", description: "de fandangos" },
 ];
 
+const KEY_DATE = Math.floor(Date.now() / 1000);
 
 const RecipeIngredients = () => {
   return (
@@ -33,10 +34,10 @@ const RecipeIngredients = () => {
       <div className={classes["ingredients"]}>
         <div key={Date()} className={classes["ingredients-list"]}>
           {DUMMY_INGREDIENTS.map((ingredient) => (
-            <div className={classes["single-ingredient"]}>
-              <div className={classes["check-icon"]}>
+            <div key={KEY_DATE} className={classes["single-ingredient"]}>
+              <i className={classes["check-icon"]}>
                 <AiOutlineCheck />
-              </div>
+              </i>
               <div className={classes["ingredient-quantity"]}>
                 {ingredient.quantity}
               </div>
