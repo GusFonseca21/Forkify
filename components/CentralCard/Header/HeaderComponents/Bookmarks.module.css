@@ -27,9 +27,9 @@
 .bookmarked-recipes {
   visibility: hidden;
   position: absolute;
-  z-index: 2;
+  /* z-index: 2; */
   right: 0rem;
-  top: 12%;
+  top: 100%;
   background-color: #f9f5f3;
   padding: 1rem 0 1rem 0;
   max-height: 19rem;
