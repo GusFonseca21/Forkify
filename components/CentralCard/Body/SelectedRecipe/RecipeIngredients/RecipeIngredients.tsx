@@ -23,6 +23,7 @@ const DUMMY_INGREDIENTS = [
   { quantity: "112 pacotes", description: "de fandangos" },
 ];
 
+
 const RecipeIngredients = () => {
   return (
     <div className={classes.body}>
@@ -30,9 +31,9 @@ const RecipeIngredients = () => {
         RECIPE INGREDIENTS
       </h2>
       <div className={classes["ingredients"]}>
-        <ul className={classes["ingredients-list"]}>
+        <div key={Date()} className={classes["ingredients-list"]}>
           {DUMMY_INGREDIENTS.map((ingredient) => (
-            <li className={classes["single-ingredient"]}>
+            <div className={classes["single-ingredient"]}>
               <i className={classes["check-icon"]}>
                 <AiOutlineCheck />
               </i>
@@ -43,9 +44,9 @@ const RecipeIngredients = () => {
               <div className={classes["ingredient-description"]}>
                 {ingredient.description}
               </div>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
       <HowToCookIt />
     </div>
