@@ -34,3 +34,9 @@
 .recipe-origin {
   color: #596474;
 }
+
+@media (max-width: 380px) {
+  .recipe-name {
+    max-width: 11rem;
+  }
+}

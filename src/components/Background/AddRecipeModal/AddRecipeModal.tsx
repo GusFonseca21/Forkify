@@ -1,18 +1,18 @@
 import React, { useContext } from "react";
 
-import { StateContext } from "../../store/state-context";
+import { StylesContext } from "../../store/styles-context";
 
 import classes from "./AddRecipeModal.module.css";
 
 import { AiOutlineCloudUpload, AiOutlineClose } from "react-icons/ai";
 
 const AddRecipeModal = () => {
-  const stateCtx = useContext(StateContext);
+  const stylesCtx = useContext(StylesContext);
 
   const DUMMY_BOOLEAN = false;
 
   const closeModalHandler = () => {
-    stateCtx.changeState("addRecipeHeader");
+    stylesCtx.changeState("addRecipeHeader");
   };
 
   const formButtonClickHandler = (event: React.FormEvent<HTMLFormElement>) => {
@@ -20,12 +20,18 @@ const AddRecipeModal = () => {
   };
 
   return (
-    <div
-      className={`${classes["add-recipe-overlay"]} ${
-        stateCtx.state.addRecipeHeaderState && classes["show-card"]
-      }`}
-    >
-      <div className={classes["add-recipe-card"]}>
+    <>
+      <div
+        className={`${classes["add-recipe-overlay"]} ${
+          stylesCtx.state.addRecipeHeaderState && classes["show-card"]
+        }`}
+        onClick={closeModalHandler}
+      ></div>
+      <div
+        className={`${classes["add-recipe-card"]} ${
+          stylesCtx.state.addRecipeHeaderState && classes["show-card"]
+        }`}
+      >
         <AiOutlineClose
           className={classes["close-card-icon"]}
           onClick={closeModalHandler}
@@ -76,7 +82,7 @@ const AddRecipeModal = () => {
           </button>
         </form>
       </div>
-    </div>
+    </>
   );
 };
 

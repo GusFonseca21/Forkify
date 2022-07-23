@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-type StateContextObj = {
+type StylesContextObj = {
   state: {
     foundRecipesControllerState: boolean;
     bookmarkRecipeState: boolean;
@@ -11,7 +11,7 @@ type StateContextObj = {
   changeState: (element: string) => void;
 };
 
-export const StateContext = React.createContext<StateContextObj>({
+export const StylesContext = React.createContext<StylesContextObj>({
   state: {
     foundRecipesControllerState: false,
     bookmarkRecipeState: false,
@@ -22,7 +22,7 @@ export const StateContext = React.createContext<StateContextObj>({
   changeState: () => {},
 });
 
-const StateContextProvider: React.FC<{ children: React.ReactNode }> = (
+const StylesContextProvider: React.FC<{ children: React.ReactNode }> = (
   props
 ) => {
   const [foundRecipesController, setFoundRecipesController] = useState(false);
@@ -54,7 +54,7 @@ const StateContextProvider: React.FC<{ children: React.ReactNode }> = (
     }
   };
 
-  const contextValue: StateContextObj = {
+  const contextValue: StylesContextObj = {
     state: {
       foundRecipesControllerState: foundRecipesController,
       bookmarkRecipeState: bookmarkRecipeButton,
@@ -66,10 +66,10 @@ const StateContextProvider: React.FC<{ children: React.ReactNode }> = (
   };
 
   return (
-    <StateContext.Provider value={contextValue}>
+    <StylesContext.Provider value={contextValue}>
       {props.children}
-    </StateContext.Provider>
+    </StylesContext.Provider>
   );
 };
 
-export default StateContextProvider;
+export default StylesContextProvider;

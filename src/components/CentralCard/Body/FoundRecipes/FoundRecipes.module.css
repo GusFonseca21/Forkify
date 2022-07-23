@@ -48,9 +48,8 @@
     transform: translateX(-100%);
     top: 0%;
     transition: all 300ms ease;
-    width: max-content;
+    max-width: max-content;
     background-color: white;
-    max-width: 70%;
     max-height: 78vh;
   }
   .found-recipes-controller {

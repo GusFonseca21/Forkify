@@ -25,30 +25,35 @@
 
 .ingredients {
   padding: 1.5rem;
+  display: grid;
+  justify-items: center;
 }
 
 .ingredients-list {
   display: grid;
-  width: 100%;
+  width: 80%;
   grid-template-columns: 1fr 1fr;
   gap: 2.5rem 3rem;
+  align-items: center;
 }
 
 .check-icon {
-  display: flex;
-  align-items: center;
   font-size: 1.5rem;
   margin-right: 0.5rem;
   color: rgb(49, 120, 198);
+  display: flex;
+  align-items: center;
 }
 
 .single-ingredient {
   display: flex;
   justify-self: start;
+  align-items: flex-start;
 }
 
 @media (max-width: 375px) {
   .ingredients-list {
     grid-template-columns: 1fr;
   }
+
 }

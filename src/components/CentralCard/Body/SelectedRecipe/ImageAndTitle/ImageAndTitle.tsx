@@ -1,16 +1,16 @@
+import React from "react";
 import classes from "./ImageAndTitle.module.css";
 
-const ImageAndTitle = () => {
+const ImageAndTitle: React.FC<{image: string, title: string}> = (props) => {
+  console.log(props.image);
   return (
     <div className={classes["image-and-title"]}>
       <img
         className={`${classes["recipe-image"]} ${classes["image-overlay"]} `}
-        src="/pizza.jpg"
+        src={props.image}
         alt="Imagem da receita"
       />
-      <h2 className={classes["recipe-title"]}>
-        CAULIFLOWER PIZZA CRUST (WITH BBQ CHICKEN PIZZA)
-      </h2>
+      <h2 className={classes["recipe-title"]}>{props.title}</h2>
     </div>
   );
 };

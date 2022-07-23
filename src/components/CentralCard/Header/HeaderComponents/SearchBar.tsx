@@ -1,36 +1,46 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef, useState } from "react";
 
-import { StateContext } from "../../../store/state-context";
+import { StylesContext } from "../../../store/styles-context";
 
 import classes from "./SearchBar.module.css";
 
 import { GoSearch } from "react-icons/go";
 
 const SearchBar = () => {
-  const stateCtx = useContext(StateContext);
+  const [enteredText, setEnteredText] = useState("");
+  const stylesCtx = useContext(StylesContext);
 
-  const searchButtonClickHandler = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
+  const searchBarTextInputRef = useRef<HTMLInputElement>(null);
+
+  const searchButtonClickHandler = (event: React.FormEvent) => {
     event.preventDefault();
-    stateCtx.changeState("searchButton")
 
+    const enteredText = searchBarTextInputRef.current!.value;
+
+    stylesCtx.changeState("searchButton");
+
+    if (enteredText.trim().length === 0) {
+      return;
+    }
+
+    setEnteredText(enteredText);
   };
 
   return (
     <form
+      onSubmit={searchButtonClickHandler}
       className={`${classes.form} ${
-        stateCtx.state.searchButtonState ? classes["search-button-click-animation"] : ""
+        stylesCtx.state.searchButtonState
+          ? classes["search-button-click-animation"]
+          : ""
       }`}
     >
       <input
         className={classes["search-bar"]}
         placeholder="Search over 1,000,000 recipes..."
+        ref={searchBarTextInputRef}
       />
-      <button
-        className={classes["search-button"]}
-        onClick={searchButtonClickHandler}
-      >
+      <button className={classes["search-button"]}>
         <GoSearch className={classes["search-icon"]} />
         <span className={classes["search-button-text"]}>SEARCH</span>
       </button>

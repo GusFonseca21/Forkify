@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { StateContext } from "../../../store/state-context";
+import { StylesContext } from "../../../store/styles-context";
 
 import classes from "./Bookmarks.module.css";
 
@@ -9,10 +9,10 @@ import { BsFillBookmarkFill } from "react-icons/bs";
 import Recipe from "../../Body/FoundRecipes/Recipe";
 
 const Bookmarks = () => {
-  const stateCtx = useContext(StateContext);
+  const stylesCtx = useContext(StylesContext);
 
   const bookmarkClickHandler = () => {
-    stateCtx.changeState("bookmarksHeader");
+    stylesCtx.changeState("bookmarksHeader");
   };
 
   return (
@@ -20,7 +20,7 @@ const Bookmarks = () => {
       {
         <button
           className={`${classes["bookmarks-button"]} ${
-            stateCtx.state.bookmarksHeaderState
+            stylesCtx.state.bookmarksHeaderState
               ? classes["bookmarks-button-clicked"]
               : ""
           }`}
@@ -33,7 +33,7 @@ const Bookmarks = () => {
       {
         <div
           className={`${classes["bookmarked-recipes"]} ${
-            stateCtx.state.bookmarksHeaderState ? classes["teste"] : ""
+            stylesCtx.state.bookmarksHeaderState ? classes["teste"] : ""
           }`}
         >
           <div className={classes["recipes-list"]}>

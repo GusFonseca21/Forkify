@@ -1,16 +1,16 @@
 import React, { useContext } from "react";
 
-import { StateContext } from "../../../store/state-context";
+import { StylesContext } from "../../../store/styles-context";
 
 import classes from "./AddRecipe.module.css";
 
 import { GoPencil } from "react-icons/go";
 
 const AddRecipe = () => {
-  const stateCtx = useContext(StateContext);
+  const stylesCtx = useContext(StylesContext);
 
   const addRecipeHandler = () => {
-    stateCtx.changeState("addRecipeHeader");
+    stylesCtx.changeState("addRecipeHeader");
   };
   return (
     <button className={classes["add-recipe-button"]} onClick={addRecipeHandler}>

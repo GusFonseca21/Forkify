@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { StateContext } from "../../../../store/state-context";
+import { StylesContext } from "../../../../store/styles-context";
 
 import classes from "./RecipeDetails.module.css";
 
@@ -8,11 +8,13 @@ import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 import { BsBookmark, BsFillBookmarkFill, BsClock } from "react-icons/bs";
 import { IoPeopleOutline } from "react-icons/io5";
 
-const RecipeDetails = () => {
-  const stateCtx = useContext(StateContext);
+const RecipeDetails: React.FC<{ cookingTime: number; servings: number }> = (
+  props
+) => {
+  const stylesCtx = useContext(StylesContext);
 
   const bookmarkButtonHandler = () => {
-    stateCtx.changeState("bookmarkRecipeButton");
+    stylesCtx.changeState("bookmarkRecipeButton");
   };
   return (
     <div className={classes["recipe-details"]}>
@@ -20,13 +22,15 @@ const RecipeDetails = () => {
         <div className={classes.timing}>
           <BsClock className={classes["timing-icon"]} />
           <span>
-            <b className={classes["text-highlighted"]}>75</b> minutes
+            <b className={classes["text-highlighted"]}>{props.cookingTime}</b>{" "}
+            minutes
           </span>
         </div>
         <div className={classes.servings}>
           <span className={classes["servings-span"]}>
             <IoPeopleOutline className={classes["servings-icon"]} />
-            <b className={classes["text-highlighted"]}>4</b> servings
+            <b className={classes["text-highlighted"]}>{props.servings}</b>{" "}
+            servings
           </span>
           <div className={classes["servings-buttons"]}>
             <AiOutlinePlusCircle className={classes.plus} />
@@ -35,7 +39,11 @@ const RecipeDetails = () => {
         </div>
       </div>
       <div className={classes.bookmark} onClick={bookmarkButtonHandler}>
-        {stateCtx.state.bookmarkRecipeState ? <BsFillBookmarkFill /> : <BsBookmark />}
+        {stylesCtx.state.bookmarkRecipeState ? (
+          <BsFillBookmarkFill />
+        ) : (
+          <BsBookmark />
+        )}
       </div>
     </div>
   );
