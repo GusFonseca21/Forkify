@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 import classes from "./CentralCard.module.css";
 
 import CentralCardHeader from "./Header/CentralCardHeader";

@@ -1,4 +1,6 @@
-import { useState } from "react";
+import React, { useContext } from "react";
+
+import { StateContext } from "../../../store/state-context";
 
 import classes from "./Bookmarks.module.css";
 
@@ -7,15 +9,10 @@ import { BsFillBookmarkFill } from "react-icons/bs";
 import Recipe from "../../Body/FoundRecipes/Recipe";
 
 const Bookmarks = () => {
-  const [bookmarkClicked, setBookmarkClicked] = useState(false);
+  const stateCtx = useContext(StateContext);
 
   const bookmarkClickHandler = () => {
-    if (!bookmarkClicked) {
-      setBookmarkClicked(true);
-    }
-    if (bookmarkClicked) {
-      setBookmarkClicked(false);
-    }
+    stateCtx.changeState("bookmarksHeader");
   };
 
   return (
@@ -23,8 +20,10 @@ const Bookmarks = () => {
       {
         <button
           className={`${classes["bookmarks-button"]} ${
-            bookmarkClicked ? classes["bookmarks-button-clicked"]
-           : ""}`}
+            stateCtx.state.bookmarksHeaderState
+              ? classes["bookmarks-button-clicked"]
+              : ""
+          }`}
           onClick={bookmarkClickHandler}
         >
           <BsFillBookmarkFill className={classes["bookmark-icon"]} />
@@ -34,7 +33,7 @@ const Bookmarks = () => {
       {
         <div
           className={`${classes["bookmarked-recipes"]} ${
-            bookmarkClicked ? classes["teste"] : ""
+            stateCtx.state.bookmarksHeaderState ? classes["teste"] : ""
           }`}
         >
           <div className={classes["recipes-list"]}>

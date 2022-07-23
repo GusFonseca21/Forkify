@@ -1,4 +1,6 @@
-import { useState } from "react";
+import React, { useContext } from "react";
+
+import { StateContext } from "../../../../store/state-context";
 
 import classes from "./RecipeDetails.module.css";
 
@@ -7,15 +9,10 @@ import { BsBookmark, BsFillBookmarkFill, BsClock } from "react-icons/bs";
 import { IoPeopleOutline } from "react-icons/io5";
 
 const RecipeDetails = () => {
-  const [isBookmarked, setIsBookmarked] = useState(false);
+  const stateCtx = useContext(StateContext);
 
   const bookmarkButtonHandler = () => {
-    if (!isBookmarked) {
-      setIsBookmarked(true);
-    }
-    if (isBookmarked) {
-      setIsBookmarked(false);
-    }
+    stateCtx.changeState("bookmarkRecipeButton");
   };
   return (
     <div className={classes["recipe-details"]}>
@@ -28,7 +25,7 @@ const RecipeDetails = () => {
         </div>
         <div className={classes.servings}>
           <span className={classes["servings-span"]}>
-          <IoPeopleOutline className={classes["servings-icon"]} />
+            <IoPeopleOutline className={classes["servings-icon"]} />
             <b className={classes["text-highlighted"]}>4</b> servings
           </span>
           <div className={classes["servings-buttons"]}>
@@ -38,7 +35,7 @@ const RecipeDetails = () => {
         </div>
       </div>
       <div className={classes.bookmark} onClick={bookmarkButtonHandler}>
-        {isBookmarked ? <BsFillBookmarkFill /> : <BsBookmark />}
+        {stateCtx.state.bookmarkRecipeState ? <BsFillBookmarkFill /> : <BsBookmark />}
       </div>
     </div>
   );

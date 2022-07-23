@@ -1,13 +1,17 @@
 import type { NextPage } from "next";
 
-import Background from "../components/Background/Background";
-import CentralCard from "../components/CentralCard/CentralCard";
+import Background from "../src/components/Background/Background";
+import CentralCard from "../src/components/CentralCard/CentralCard";
+
+import StateContextProvider from "../src/components/store/state-context";
 
 const Home: NextPage = () => {
   return (
-    <Background>
-      <CentralCard />
-    </Background>
+    <StateContextProvider>
+      <Background>
+        <CentralCard />
+      </Background>
+    </StateContextProvider>
   );
 };
 

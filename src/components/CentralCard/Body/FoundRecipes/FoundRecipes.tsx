@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+
+import { StateContext } from "../../../store/state-context";
 
 import classes from "./FoundRecipes.module.css";
 import Recipe from "./Recipe";
@@ -6,26 +8,26 @@ import Recipe from "./Recipe";
 import { AiFillCaretLeft, AiFillCaretRight } from "react-icons/ai";
 
 const FoundRecipes = () => {
-  const [foundRecipesHidden, setFoundRecipesHidden] = useState(false);
+  const stateCtx = useContext(StateContext);
 
   const hideShowFoundRecipesHandler = () => {
-    if (!foundRecipesHidden) {
-      setFoundRecipesHidden(true);
-    }
-    if (foundRecipesHidden) {
-      setFoundRecipesHidden(false);
-    }
+    stateCtx.changeState("foundRecipesController");
   };
   return (
-    <div className={classes["found-recipes"]}>
-      {!foundRecipesHidden ? (
+    <div
+      className={`${classes["found-recipes"]} ${
+        !stateCtx.state.foundRecipesControllerState &&
+        classes["show-found-recipes"]
+      }`}
+    >
+      {!stateCtx.state.foundRecipesControllerState ? (
         <AiFillCaretLeft
-          className={classes["hide-show-found-recipes-button"]}
+          className={classes["found-recipes-controller"]}
           onClick={hideShowFoundRecipesHandler}
         />
       ) : (
         <AiFillCaretRight
-          className={classes["hide-show-found-recipes-button"]}
+          className={classes["found-recipes-controller"]}
           onClick={hideShowFoundRecipesHandler}
         />
       )}

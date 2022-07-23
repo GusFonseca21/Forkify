@@ -1,27 +1,35 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+
+import { StateContext } from "../../store/state-context";
 
 import classes from "./AddRecipeModal.module.css";
 
 import { AiOutlineCloudUpload, AiOutlineClose } from "react-icons/ai";
 
 const AddRecipeModal = () => {
-    const [isButtonClicked, setIsButtonClicked] = useState(false);
+  const stateCtx = useContext(StateContext);
 
-    const formButtonClickHandler = (event: React.FormEvent<HTMLFormElement>) => {
-      event.preventDefault();
-      if (!isButtonClicked) {
-        setIsButtonClicked(true);
-        setTimeout(() => {
-          setIsButtonClicked(false);
-        }, 1 * 1000);
-      }
-    };
+  const DUMMY_BOOLEAN = false;
 
-    return (
-    <>
-      <div className={classes["add-recipe-overlay"]}></div>
+  const closeModalHandler = () => {
+    stateCtx.changeState("addRecipeHeader");
+  };
+
+  const formButtonClickHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+  };
+
+  return (
+    <div
+      className={`${classes["add-recipe-overlay"]} ${
+        stateCtx.state.addRecipeHeaderState && classes["show-card"]
+      }`}
+    >
       <div className={classes["add-recipe-card"]}>
-        <AiOutlineClose className={classes["close-card-icon"]} />
+        <AiOutlineClose
+          className={classes["close-card-icon"]}
+          onClick={closeModalHandler}
+        />
         <form
           className={classes["add-recipe-form"]}
           onSubmit={formButtonClickHandler}
@@ -60,7 +68,7 @@ const AddRecipeModal = () => {
           </div>
           <button
             className={`${classes["form-button"]} ${
-              isButtonClicked ? classes["form-button-click-animation"] : ""
+              DUMMY_BOOLEAN ? classes["form-button-click-animation"] : ""
             }`}
           >
             <AiOutlineCloudUpload className={classes["form-button-icon"]} />
@@ -68,9 +76,8 @@ const AddRecipeModal = () => {
           </button>
         </form>
       </div>
-      
-    </>
-    )
+    </div>
+  );
 };
 
 export default AddRecipeModal;

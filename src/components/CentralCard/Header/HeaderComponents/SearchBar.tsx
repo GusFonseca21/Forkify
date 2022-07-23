@@ -1,28 +1,26 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+
+import { StateContext } from "../../../store/state-context";
 
 import classes from "./SearchBar.module.css";
 
 import { GoSearch } from "react-icons/go";
 
 const SearchBar = () => {
-  const [isButtonClicked, setIsButtonClicked] = useState(false);
+  const stateCtx = useContext(StateContext);
 
   const searchButtonClickHandler = (
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     event.preventDefault();
-    if (!isButtonClicked) {
-      setIsButtonClicked(true);
-      setTimeout(() => {
-        setIsButtonClicked(false);
-      }, 1 * 1000);
-    }
+    stateCtx.changeState("searchButton")
+
   };
 
   return (
     <form
       className={`${classes.form} ${
-        isButtonClicked ? classes["search-button-click-animation"] : ""
+        stateCtx.state.searchButtonState ? classes["search-button-click-animation"] : ""
       }`}
     >
       <input
