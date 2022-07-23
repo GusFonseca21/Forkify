@@ -16,17 +16,17 @@ const FoundRecipes = () => {
   return (
     <div
       className={`${classes["found-recipes"]} ${
-        !stateCtx.state.foundRecipesControllerState &&
+        stateCtx.state.foundRecipesControllerState &&
         classes["show-found-recipes"]
       }`}
     >
       {!stateCtx.state.foundRecipesControllerState ? (
-        <AiFillCaretLeft
+        <AiFillCaretRight
           className={classes["found-recipes-controller"]}
           onClick={hideShowFoundRecipesHandler}
         />
       ) : (
-        <AiFillCaretRight
+        <AiFillCaretLeft
           className={classes["found-recipes-controller"]}
           onClick={hideShowFoundRecipesHandler}
         />

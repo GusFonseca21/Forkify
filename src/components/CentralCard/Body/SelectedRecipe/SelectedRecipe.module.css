@@ -19,12 +19,12 @@
   background-color: #aeaeb1;
 }
 
-
-
 @media (max-width: 1000px) {
   .body {
-    /* filter: blur(1.5px); */
-    /* pointer-events: none; */
     height: 78vh;
+  }
+  .body.show-found-recipes {
+    filter: blur(1.5px);
+    pointer-events: none;
   }
 }
