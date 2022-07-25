@@ -8,9 +8,12 @@ import Recipe from "./Recipe/Recipe";
 import useFetchRecipes from "../../../../Helpers/useFetchRecipes";
 
 import { AiFillCaretLeft, AiFillCaretRight } from "react-icons/ai";
+import { FetchRecipesContext } from "../../../store/fetch-recipes-context";
 
 const FoundRecipes = () => {
   const stylesCtx = useContext(StylesContext);
+
+  const fetchCtx = useContext(FetchRecipesContext);
 
   const hideShowFoundRecipesHandler = () => {
     stylesCtx.changeState("foundRecipesController");
@@ -25,7 +28,11 @@ const FoundRecipes = () => {
         classes["show-found-recipes"]
       }`}
     >
-      <div className={classes["found-recipe-controller-buttons"]}>
+      <div
+        className={`${classes["found-recipe-controller-buttons"]} ${
+          !fetchCtx.inputText && classes["no-recipes-searched"]
+        }`}
+      >
         {!stylesCtx.state.foundRecipesControllerState ? (
           <AiFillCaretRight
             className={classes["found-recipes-controller"]}
