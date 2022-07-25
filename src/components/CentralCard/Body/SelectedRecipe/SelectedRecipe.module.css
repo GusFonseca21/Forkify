@@ -8,6 +8,12 @@
   background-color: #f1f2f6;
   overflow-y: scroll;
 }
+
+.found-recipes-open {
+  filter: blur(1.5px);
+  pointer-events: none;
+}
+
 .body::-webkit-scrollbar {
   width: 0.3rem;
 }
@@ -23,8 +29,5 @@
   .body {
     height: 78vh;
   }
-  .body.show-found-recipes {
-    filter: blur(1.5px);
-    pointer-events: none;
-  }
+
 }

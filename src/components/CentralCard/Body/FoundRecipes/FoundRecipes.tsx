@@ -3,7 +3,9 @@ import React, { useContext } from "react";
 import { StylesContext } from "../../../store/styles-context";
 
 import classes from "./FoundRecipes.module.css";
-import Recipe from "./Recipe";
+import Recipe from "./Recipe/Recipe";
+
+import useFetchRecipes from "../../../../Helpers/useFetchRecipes";
 
 import { AiFillCaretLeft, AiFillCaretRight } from "react-icons/ai";
 
@@ -13,6 +15,9 @@ const FoundRecipes = () => {
   const hideShowFoundRecipesHandler = () => {
     stylesCtx.changeState("foundRecipesController");
   };
+
+  const fetchedRecipes = useFetchRecipes();
+
   return (
     <div
       className={`${classes["found-recipes"]} ${
@@ -20,30 +25,38 @@ const FoundRecipes = () => {
         classes["show-found-recipes"]
       }`}
     >
-      {!stylesCtx.state.foundRecipesControllerState ? (
-        <AiFillCaretRight
-          className={classes["found-recipes-controller"]}
-          onClick={hideShowFoundRecipesHandler}
-        />
-      ) : (
-        <AiFillCaretLeft
-          className={classes["found-recipes-controller"]}
-          onClick={hideShowFoundRecipesHandler}
-        />
-      )}
+      <div className={classes["found-recipe-controller-buttons"]}>
+        {!stylesCtx.state.foundRecipesControllerState ? (
+          <AiFillCaretRight
+            className={classes["found-recipes-controller"]}
+            onClick={hideShowFoundRecipesHandler}
+          />
+        ) : (
+          <AiFillCaretLeft
+            className={classes["found-recipes-controller"]}
+            onClick={hideShowFoundRecipesHandler}
+          />
+        )}
+      </div>
       <div className={classes.recipes}>
-        <Recipe />
-        <Recipe />
-        <Recipe />
-        <Recipe />
-        <Recipe />
-        <Recipe />
-        <Recipe />
-        <Recipe />
-        <Recipe />
-        <Recipe />
-        <Recipe />
-        <Recipe />
+        {fetchedRecipes.map(
+          (recipe: {
+            image_url: string;
+            publisher: string;
+            title: string;
+            id: string;
+          }) => {
+            return (
+              <Recipe
+                key={recipe.id}
+                image={recipe.image_url}
+                title={recipe.title}
+                publisher={recipe.publisher}
+                id={recipe.id}
+              />
+            );
+          }
+        )}
       </div>
     </div>
   );

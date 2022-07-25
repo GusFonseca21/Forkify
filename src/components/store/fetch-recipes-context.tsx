@@ -1,20 +1,45 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 
-// const FetchRecipesContext = React.createContext<{
-//   searchInput: string;
-//   foundRecipes: string[];
-// }>({
-//   searchInput: "",
-//   foundRecipes: [],
-// });
+type FetchRecipesObj = {
+  getInputText: (text: string) => void;
+  inputText: string;
+  getId: (id: string) => void;
+  id: string;
+};
 
-// const FetchRecipesContextProvider: React.FC<{children: React.ReactNode}> = (props) => {
-//     const [inputText, setInputText] = useState("");
+export const FetchRecipesContext = React.createContext<FetchRecipesObj>({
+  getInputText: () => {},
+  inputText: "",
+  getId: () => {},
+  id: "",
+});
 
-    
+const FetchRecipesContextProvider: React.FC<{ children: React.ReactNode }> = (
+  props
+) => {
+  const [inputtedText, setInputText] = useState("");
+  const [selectedId, setSelectedId] = useState("");
 
+  const getInputText = (search: string) => {
+    setInputText(search);
+  };
 
-//     return <FetchRecipesContext.Provider>
-//         {props.children}
-//     </FetchRecipesContext.Provider>
-// };
+  const getId = (id: string) => {
+    setSelectedId(id);
+  };
+
+  const contextValue: FetchRecipesObj = {
+    getInputText,
+    inputText: inputtedText,
+    getId,
+    id: selectedId,
+  };
+
+  return (
+    <FetchRecipesContext.Provider value={contextValue}>
+      {props.children}
+    </FetchRecipesContext.Provider>
+  );
+};
+
+export default FetchRecipesContextProvider;

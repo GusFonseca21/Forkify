@@ -12,12 +12,21 @@
   position: relative;
 }
 
+.found-recipes-open {
+  filter: blur(1.5px);
+  pointer-events: none;
+}
+
 .logo {
   height: 55%;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
 }
 
 .logo-simples {
   height: 55%;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
   display: none;
 }
 

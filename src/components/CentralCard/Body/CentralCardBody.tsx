@@ -6,6 +6,7 @@ import SelectedRecipe from "./SelectedRecipe/SelectedRecipe";
 
 const CentralCardBody = () => {
 
+
   return (
     <div className={classes.body}>
       <FoundRecipes />

@@ -5,19 +5,26 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   position: relative;
+}
+.found-recipe-controller-buttons {
+  display: none;
+
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  top: 2%;
+  left: 100%;
+  z-index: 1;
+  background-color: rgb(49, 120, 198);
+  border-radius: 50px;
 }
 
 .found-recipes-controller {
-  display: none;
-  z-index: 10;
-  position: absolute;
-  top: 2%;
-  left: 100%;
-  border-radius: 50px;
   color: #fff;
-  width: 1.9rem;
-  height: 1.9rem;
+  width: 1.6rem;
+  height: 1.6rem;
 }
 
 .found-recipes-controller:hover,
@@ -52,8 +59,11 @@
     background-color: white;
     max-height: 78vh;
   }
-  .found-recipes-controller {
-    display: block;
+
+  .found-recipe-controller-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .show-found-recipes {

@@ -1,14 +1,15 @@
 import React, { useContext, useRef, useState } from "react";
 
 import { StylesContext } from "../../../store/styles-context";
+import { FetchRecipesContext } from "../../../store/fetch-recipes-context";
 
 import classes from "./SearchBar.module.css";
 
 import { GoSearch } from "react-icons/go";
 
 const SearchBar = () => {
-  const [enteredText, setEnteredText] = useState("");
   const stylesCtx = useContext(StylesContext);
+  const fetchCtx = useContext(FetchRecipesContext);
 
   const searchBarTextInputRef = useRef<HTMLInputElement>(null);
 
@@ -22,8 +23,7 @@ const SearchBar = () => {
     if (enteredText.trim().length === 0) {
       return;
     }
-
-    setEnteredText(enteredText);
+    fetchCtx.getInputText(enteredText);
   };
 
   return (

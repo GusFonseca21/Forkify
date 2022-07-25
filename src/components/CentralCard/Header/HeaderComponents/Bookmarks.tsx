@@ -6,7 +6,7 @@ import classes from "./Bookmarks.module.css";
 
 import { BsFillBookmarkFill } from "react-icons/bs";
 
-import Recipe from "../../Body/FoundRecipes/Recipe";
+import Recipe from "../../Body/FoundRecipes/Recipe/Recipe";
 
 const Bookmarks = () => {
   const stylesCtx = useContext(StylesContext);
@@ -33,7 +33,7 @@ const Bookmarks = () => {
       {
         <div
           className={`${classes["bookmarked-recipes"]} ${
-            stylesCtx.state.bookmarksHeaderState ? classes["teste"] : ""
+            stylesCtx.state.bookmarksHeaderState ? classes["bookmark-clicked"] : ""
           }`}
         >
           <div className={classes["recipes-list"]}>

@@ -13,7 +13,6 @@ const RecipeIngredients: React.FC<{
   source: string;
   id: string;
 }> = (props) => {
-  console.log(props.ingredients);
   return (
     <div className={classes.body}>
       <h2 className={classes["recipe-ingredients-title"]}>

@@ -29,8 +29,7 @@
   position: absolute;
   right: 0rem;
   top: 100%;
-  background-color: #f9f5f3;
-  padding: 1rem 0 1rem 0;
+  background-color: #dfe4ea;
   max-height: 19rem;
   overflow-y: scroll;
 }
@@ -58,10 +57,11 @@
 .bookmarked-recipes:hover,
 .bookmarks-button:hover + .bookmarked-recipes {
   visibility: visible;
+  background-color: #dfe4ea;
   opacity: 1;
 }
 
-.teste {
+.bookmark-clicked {
   visibility: visible !important;
   opacity: 1 !important;
 }

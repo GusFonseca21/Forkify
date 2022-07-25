@@ -4,6 +4,7 @@ import { GoMarkGithub } from "react-icons/go";
 import { GiKnifeFork } from "react-icons/gi";
 
 const Footer = () => {
+
   return (
     <footer className={classes.footer}>
       <div className={classes["footer-text"]}>
@@ -18,7 +19,7 @@ const Footer = () => {
           </a>
         </div>
         <div className={classes["footer-text-forkify"]}>
-          <span >Inspirado em Forkify, de Jonas Schmedtmann</span>
+          <span>Inspirado em Forkify, de Jonas Schmedtmann</span>
           <a
             href="https://forkify-v2.netlify.app/"
             target="_blank"
