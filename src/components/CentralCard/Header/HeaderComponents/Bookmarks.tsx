@@ -33,15 +33,12 @@ const Bookmarks = () => {
       {
         <div
           className={`${classes["bookmarked-recipes"]} ${
-            stylesCtx.state.bookmarksHeaderState ? classes["bookmark-clicked"] : ""
+            stylesCtx.state.bookmarksHeaderState
+              ? classes["bookmark-clicked"]
+              : ""
           }`}
         >
-          <div className={classes["recipes-list"]}>
-            <Recipe />
-            <Recipe />
-            <Recipe />
-            <Recipe />
-          </div>
+          <div className={classes["recipes-list"]}></div>
         </div>
       }
     </>
