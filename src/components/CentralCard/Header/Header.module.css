@@ -12,15 +12,15 @@
   position: relative;
 }
 
-.found-recipes-open {
-  filter: blur(1.5px);
-  pointer-events: none;
+.error-message {
+  display: none;
 }
 
 .logo {
   height: 55%;
   margin-right: 0.5rem;
   margin-left: 0.5rem;
+  cursor: pointer;
 }
 
 .logo-simples {
@@ -28,11 +28,37 @@
   margin-right: 0.5rem;
   margin-left: 0.5rem;
   display: none;
+  cursor: pointer;
 }
 
 .header-buttons {
   display: flex;
   height: 100%;
+}
+
+.loading-bar {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  display: none;
+}
+
+@media (max-width: 1000px) {
+  .loading-bar {
+    display: inline-block;
+  }
+  .error-message {
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    color: red;
+    font-weight: 700;
+  }
+  .found-recipes-open {
+    filter: blur(1.5px);
+    pointer-events: none;
+  }
 }
 
 @media (max-width: 530px) {

@@ -1,5 +1,6 @@
 .body {
   position: relative;
+  z-index: 8;
   width: 100%;
   height: 76vh;
   display: flex;
@@ -9,9 +10,35 @@
   overflow-y: scroll;
 }
 
-.found-recipes-open {
-  filter: blur(1.5px);
-  pointer-events: none;
+.starting-message {
+  z-index: 6;
+  display: flex;
+  justify-content: center;
+  margin-top: 5rem;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #596474;
+}
+
+.error-message {
+  position: absolute;
+  font-weight: 700;
+  top: 3%;
+  text-align: center;
+  color: red;
+}
+
+.starting-message-emoji {
+  margin-right: 0.5rem;
+  font-size: 1.6rem;
+  color: rgb(49, 120, 198);
+}
+
+.loading-bar {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 1000;
 }
 
 .body::-webkit-scrollbar {
@@ -26,8 +53,8 @@
 }
 
 @media (max-width: 1000px) {
-  .body {
-    height: 78vh;
+  .body.found-recipes-open {
+    filter: blur(1.5px);
+    pointer-events: none;
   }
-
 }

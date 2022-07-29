@@ -1,70 +1,89 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 import { StylesContext } from "../../../store/styles-context";
+import { FetchRecipesContext } from "../../../store/fetch-recipes-context";
+import { ErrorContext } from "../../../store/error-context";
 
 import classes from "./FoundRecipes.module.css";
+
 import Recipe from "./Recipe/Recipe";
 
-import useFetchRecipes from "../../../../Helpers/useFetchRecipes";
-
-import { AiFillCaretLeft, AiFillCaretRight } from "react-icons/ai";
-import { FetchRecipesContext } from "../../../store/fetch-recipes-context";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import LinearProgress from "@mui/material/LinearProgress";
+import useFetchRecipes from "../../../hooks/useFetchRecipes";
 
 const FoundRecipes = () => {
   const stylesCtx = useContext(StylesContext);
-
   const fetchCtx = useContext(FetchRecipesContext);
-
-  const hideShowFoundRecipesHandler = () => {
-    stylesCtx.changeState("foundRecipesController");
-  };
+  const errorCtx = useContext(ErrorContext);
 
   const fetchedRecipes = useFetchRecipes();
+
+  const isLoading = stylesCtx.state.foundRecipesLoadingState;
+  const hasError = errorCtx.fetchRecipesStatus;
+  const errorMessage = errorCtx.fetchRecipesErrorMessage;
+  const hasEnteredText = fetchCtx.inputText;
+  const isFoundRecipesControllerOpen =
+    stylesCtx.state.foundRecipesControllerState;
+
+  const hideShowFoundRecipesHandler = () => {
+    if (isFoundRecipesControllerOpen)
+      stylesCtx.changeFoundRecipesControllerState(false);
+    if (!isFoundRecipesControllerOpen)
+      stylesCtx.changeFoundRecipesControllerState(true);
+  };
 
   return (
     <div
       className={`${classes["found-recipes"]} ${
-        stylesCtx.state.foundRecipesControllerState &&
-        classes["show-found-recipes"]
+        isFoundRecipesControllerOpen && classes["show-found-recipes"]
       }`}
     >
+      {hasError && (
+        <span className={classes["error-message"]}>{errorMessage}</span>
+      )}
       <div
         className={`${classes["found-recipe-controller-buttons"]} ${
-          !fetchCtx.inputText && classes["no-recipes-searched"]
+          !hasEnteredText && classes["no-recipes-searched"]
         }`}
       >
-        {!stylesCtx.state.foundRecipesControllerState ? (
-          <AiFillCaretRight
+        {!isFoundRecipesControllerOpen ? (
+          <ChevronRightIcon
             className={classes["found-recipes-controller"]}
             onClick={hideShowFoundRecipesHandler}
           />
         ) : (
-          <AiFillCaretLeft
+          <ChevronLeftIcon
             className={classes["found-recipes-controller"]}
             onClick={hideShowFoundRecipesHandler}
           />
         )}
       </div>
-      <div className={classes.recipes}>
-        {fetchedRecipes.map(
-          (recipe: {
-            image_url: string;
-            publisher: string;
-            title: string;
-            id: string;
-          }) => {
-            return (
-              <Recipe
-                key={recipe.id}
-                image={recipe.image_url}
-                title={recipe.title}
-                publisher={recipe.publisher}
-                id={recipe.id}
-              />
-            );
-          }
-        )}
-      </div>
+      {isLoading && !hasError ? (
+        <LinearProgress className={classes.loading} />
+      ) : (
+        <div className={classes.recipes}>
+          {fetchedRecipes.map(
+            (recipe: {
+              image_url: string;
+              publisher: string;
+              title: string;
+              id: string;
+            }) => {
+              return (
+                <Recipe
+                  key={recipe.id}
+                  image={recipe.image_url}
+                  title={recipe.title}
+                  publisher={recipe.publisher}
+                  id={recipe.id}
+                />
+              );
+            }
+          )}
+        </div>
+      )}
     </div>
   );
 };

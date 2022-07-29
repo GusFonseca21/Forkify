@@ -1,0 +1,51 @@
+import { useState, useEffect, useContext } from "react";
+import { ErrorContext } from "../store/error-context";
+
+import { FetchRecipesContext } from "../store/fetch-recipes-context";
+import { StylesContext } from "../store/styles-context";
+
+export default function useFetchRecipes() {
+  const [recipesArr, setRecipesArr] = useState([]);
+
+  const fetchCtx = useContext(FetchRecipesContext);
+  const stylesCtx = useContext(StylesContext);
+  const errorCtx = useContext(ErrorContext);
+
+  const searchInput = fetchCtx.inputText;
+
+  useEffect(() => {
+    if (searchInput !== "") {
+      errorCtx.changeFetchRecipesStatus(true);
+      stylesCtx.changeFoundRecipesLoadingState(true);
+      const fetchRecipes = async () => {
+        const response = await fetch(
+          `https://forkify-api.herokuapp.com/api/v2/recipes?search=${searchInput}`
+        );
+
+        if (!response.ok) {
+          errorCtx.getFetchRecipesErrorMessage(
+            `Something went wrong! Error: ${response.statusText}. Status Code: ${response.status}`
+          );
+          errorCtx.changeFetchRecipesStatus(response.ok);
+          stylesCtx.changeFoundRecipesLoadingState(false);
+        }
+        const data = await response.json();
+
+        if (data.results === 0) {
+          errorCtx.getFetchRecipesErrorMessage("No results were found!");
+          errorCtx.changeFetchRecipesStatus(false);
+          stylesCtx.changeFoundRecipesLoadingState(false);
+        }
+
+        const recipes = data.data.recipes;
+
+        setRecipesArr(recipes);
+        stylesCtx.changeFoundRecipesLoadingState(false);
+        stylesCtx.changeFoundRecipesControllerState(true);
+      };
+      fetchRecipes();
+    }
+  }, [searchInput]);
+
+  return recipesArr;
+}

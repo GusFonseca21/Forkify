@@ -7,8 +7,15 @@ type StylesContextObj = {
     searchButtonState: boolean;
     bookmarksHeaderState: boolean;
     addRecipeHeaderState: boolean;
+    foundRecipesLoadingState: boolean;
+    selectedRecipeLoadingState: boolean;
   };
   changeState: (element: string) => void;
+  changeBookmarksHeaderState: (value: boolean) => void;
+  changeBookmarkedRecipeState: (value: boolean) => void;
+  changeFoundRecipesLoadingState: (value: boolean) => void;
+  changeSelectedRecipeLoadingState: (value: boolean) => void;
+  changeFoundRecipesControllerState: (value: boolean) => void;
 };
 
 export const StylesContext = React.createContext<StylesContextObj>({
@@ -18,8 +25,15 @@ export const StylesContext = React.createContext<StylesContextObj>({
     searchButtonState: false,
     bookmarksHeaderState: false,
     addRecipeHeaderState: false,
+    foundRecipesLoadingState: false,
+    selectedRecipeLoadingState: false,
   },
   changeState: () => {},
+  changeBookmarksHeaderState: () => {},
+  changeBookmarkedRecipeState: () => {},
+  changeFoundRecipesLoadingState: () => {},
+  changeSelectedRecipeLoadingState: () => {},
+  changeFoundRecipesControllerState: () => {},
 });
 
 const StylesContextProvider: React.FC<{ children: React.ReactNode }> = (
@@ -30,28 +44,39 @@ const StylesContextProvider: React.FC<{ children: React.ReactNode }> = (
   const [searchBarButton, setSearchBarButton] = useState(false);
   const [bookmarksHeader, setBookmarksHeader] = useState(false);
   const [addRecipeHeader, setAddRecipeHeader] = useState(false);
+  const [isFoundRecipesLoading, setIsFoundRecipesLoading] = useState(false);
+  const [isSelectedRecipeLoading, setIsSelectedRecipeLoading] = useState(false);
 
   const changeState = (element: string) => {
-    if (element === "foundRecipesController") {
-      !foundRecipesController
-        ? setFoundRecipesController(true)
-        : setFoundRecipesController(false);
-    }
-    if (element === "bookmarkRecipeButton") {
-      !bookmarkRecipeButton ? setBookmarRecipe(true) : setBookmarRecipe(false);
-    }
     if (element === "searchButton") {
       setSearchBarButton(true);
       setTimeout(() => {
         setSearchBarButton(false);
       }, 1 * 1000);
     }
-    if (element === "bookmarksHeader") {
-      !bookmarksHeader ? setBookmarksHeader(true) : setBookmarksHeader(false);
-    }
+
     if (element === "addRecipeHeader") {
       !addRecipeHeader ? setAddRecipeHeader(true) : setAddRecipeHeader(false);
     }
+  };
+  const changeBookmarksHeaderState = (value: boolean) => {
+    setBookmarksHeader(value);
+  };
+
+  const changeFoundRecipesControllerState = (value: boolean) => {
+    setFoundRecipesController(value);
+  };
+
+  const changeBookmarkedRecipeState = (value: boolean) => {
+    setBookmarRecipe(value);
+  };
+
+  const changeFoundRecipesLoadingState = (value: boolean) => {
+    setIsFoundRecipesLoading(value);
+  };
+
+  const changeSelectedRecipeLoadingState = (value: boolean) => {
+    setIsSelectedRecipeLoading(value);
   };
 
   const contextValue: StylesContextObj = {
@@ -61,8 +86,15 @@ const StylesContextProvider: React.FC<{ children: React.ReactNode }> = (
       searchButtonState: searchBarButton,
       bookmarksHeaderState: bookmarksHeader,
       addRecipeHeaderState: addRecipeHeader,
+      foundRecipesLoadingState: isFoundRecipesLoading,
+      selectedRecipeLoadingState: isSelectedRecipeLoading,
     },
     changeState,
+    changeBookmarksHeaderState,
+    changeBookmarkedRecipeState,
+    changeFoundRecipesLoadingState,
+    changeSelectedRecipeLoadingState,
+    changeFoundRecipesControllerState,
   };
 
   return (

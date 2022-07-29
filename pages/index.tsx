@@ -1,21 +1,14 @@
 import type { NextPage } from "next";
 
-import Background from "../src/components/Background/Background";
 import CentralCard from "../src/components/CentralCard/CentralCard";
-
-import StateContextProvider from "../src/components/store/styles-context";
-import FetchRecipesContextProvider from "../src/components/store/fetch-recipes-context";
+import Header from "../src/components/CentralCard/Header/Header";
+import Body from "../src/components/CentralCard/Body/Body";
+import FoundRecipes from "../src/components/CentralCard/Body/FoundRecipes/FoundRecipes";
+import SelectedRecipe from "../src/components/CentralCard/Body/SelectedRecipe/SelectedRecipe";
+import Footer from "../src/components/CentralCard/Footer/Footer";
 
 const Home: NextPage = () => {
-  return (
-    <StateContextProvider>
-      <FetchRecipesContextProvider>
-        <Background>
-          <CentralCard />
-        </Background>
-      </FetchRecipesContextProvider>
-    </StateContextProvider>
-  );
+  return <></>;
 };
 
 export default Home;

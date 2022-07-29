@@ -1,20 +1,14 @@
 .body {
   display: grid;
-  grid-template-columns: 1fr 3fr;
-  height: 76%;
+  grid-template-columns: minmax(346px, 1fr) 3fr;
+  height: 76vh;
   border-radius: inherit;
-}
-
-.teste {
-  width: 100%;
-  height: 100%;
-  z-index: 10;
-  background-color: blue;
+  position: relative;
 }
 
 @media (max-width: 1000px) {
   .body {
     grid-template-columns: 1fr;
     position: relative;
-    }
+  }
 }

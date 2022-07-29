@@ -1,54 +1,60 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
+import { useRouter } from "next/router";
 
 import { StylesContext } from "../../../store/styles-context";
+import { ErrorContext } from "../../../store/error-context";
 
 import classes from "./SelectedRecipe.module.css";
 
-import ImageAndTitle from "./ImageAndTitle/ImageAndTitle";
-import RecipeDetails from "./RecipeDetails/RecipeDetails";
-import RecipeIngredients from "./RecipeIngredients/RecipeIngredients";
-import StartingMessage from "./StartingMessage/StartingMessage";
-import { FetchRecipesContext } from "../../../store/fetch-recipes-context";
-import useFetchRecipeId from "../../../../Helpers/useFetchRecipeId";
+import SelectedRecipeComponents from "./SelectedRecipeComponent/SelectedRecipeComponents";
+
+import { BsEmojiSmile } from "react-icons/bs";
+import LinearProgress from "@mui/material/LinearProgress";
 
 const SelectedRecipe = () => {
   const stylesCtx = useContext(StylesContext);
+  const errorCtx = useContext(ErrorContext);
+  const router = useRouter();
+  const recipeId = router.query.id;
 
-  const fetchCtx = useContext(FetchRecipesContext);
+  const foundRecipesControllerState =
+    stylesCtx.state.foundRecipesControllerState;
+  const isSelectedRecipeLoading = stylesCtx.state.selectedRecipeLoadingState;
+  const hasError = errorCtx.fetchSelectedRecipeStatus;
+  const foundRecipesHasError = errorCtx.fetchRecipesStatus;
+  const errorMessage = errorCtx.fetchSelectedRecipeErrorMessage;
 
   const closeFoundRecipes = () => {
-    if (stylesCtx.state.foundRecipesControllerState) {
-      stylesCtx.changeState("foundRecipesController");
+    if (foundRecipesControllerState) {
+      stylesCtx.changeFoundRecipesControllerState(false);
     }
   };
 
-  const recipeData = useFetchRecipeId();
-  
   return (
     <div onClick={closeFoundRecipes}>
       <div
         className={`${classes.body} ${
-          stylesCtx.state.foundRecipesControllerState &&
+          foundRecipesControllerState &&
+          !foundRecipesHasError &&
           classes["found-recipes-open"]
         }`}
       >
-        {fetchCtx.id === "" && <StartingMessage />}
-        {fetchCtx.id !== "" && (
-          <ImageAndTitle image={recipeData.image} title={recipeData.title} />
+        {hasError && (
+          <span className={classes["error-message"]}>{errorMessage}</span>
         )}
-        {fetchCtx.id !== "" && (
-          <RecipeDetails
-            cookingTime={recipeData.cookingTime}
-            servings={recipeData.servings}
-          />
+        {recipeId === undefined && (
+          <div className={classes["starting-message"]}>
+            <BsEmojiSmile className={classes["starting-message-emoji"]} />
+            <p>
+              Start by searching for a recipe or an ingredient.
+              <br /> Have fun!
+            </p>
+          </div>
         )}
-        {fetchCtx.id !== "" && (
-          <RecipeIngredients
-            ingredients={recipeData.ingredients}
-            id={recipeData.id}
-            source={recipeData.source}
-          />
+        {isSelectedRecipeLoading && (
+          <LinearProgress className={classes["loading-bar"]} />
         )}
+        {recipeId !== undefined && <SelectedRecipeComponents />}
       </div>
     </div>
   );

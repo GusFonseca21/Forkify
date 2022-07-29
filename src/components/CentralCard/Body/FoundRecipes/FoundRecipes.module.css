@@ -1,24 +1,31 @@
 .found-recipes {
-  z-index: 1;
+  z-index: 3;
   width: 100%;
-  max-height: 76vh;
+  height: 76vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   position: relative;
+  transition: all 300ms ease;
 }
+
+.error-message {
+  position: absolute;
+  font-weight: 700;
+  top: 1%;
+  text-align: center;
+  color: red;
+}
+
+.loading {
+  position: absolute;
+  width: 100%;
+  color: rgb(49, 120, 198);
+}
+
 .found-recipe-controller-buttons {
   display: none;
-  position: absolute;
-  margin-left: 0.5rem;
-  width: 2rem;
-  height: 2rem;
-  top: 2%;
-  left: 100%;
-  z-index: 1;
-  background-color: rgb(49, 120, 198);
-  border-radius: 50px;
 }
 
 .no-recipes-searched {
@@ -27,8 +34,10 @@
 
 .found-recipes-controller {
   color: #fff;
-  width: 1.6rem;
-  height: 1.6rem;
+  font-size: 2.5rem;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
 }
 
 .found-recipes-controller:hover,
@@ -42,7 +51,7 @@
 }
 
 .recipes::-webkit-scrollbar {
-  width: 0.3rem;
+  width: 0.5rem;
 }
 .recipes::-webkit-scrollbar-thumb {
   background: rgb(49, 120, 198);
@@ -61,16 +70,41 @@
     transition: all 300ms ease;
     max-width: max-content;
     background-color: white;
-    max-height: 78vh;
+    height: 76vh;
   }
 
   .found-recipe-controller-buttons {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+    position: absolute;
+    margin-left: 0.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    top: 2%;
+    left: 100%;
+    z-index: 1;
+    background-image: linear-gradient(
+      to top right,
+      rgb(49, 120, 198),
+      rgb(97, 218, 251)
+    );
+    border-radius: 50px;
   }
 
   .show-found-recipes {
     transform: translateX(0%) !important;
+  }
+  .error-message {
+    display: none;
+  }
+}
+
+@media (max-width: 330px) {
+  .found-recipe-controller-buttons {
+    margin: 0;
+    left: 101%;
+    width: 2rem;
+    height: 2rem;
   }
 }

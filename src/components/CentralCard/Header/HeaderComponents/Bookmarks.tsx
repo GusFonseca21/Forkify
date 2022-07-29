@@ -1,28 +1,35 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import { StylesContext } from "../../../store/styles-context";
 
 import classes from "./Bookmarks.module.css";
 
-import { BsFillBookmarkFill } from "react-icons/bs";
-
 import Recipe from "../../Body/FoundRecipes/Recipe/Recipe";
 
+import { BsFillBookmarkFill } from "react-icons/bs";
+
 const Bookmarks = () => {
+  const [recipeData, setRecipeData] = useState([]);
   const stylesCtx = useContext(StylesContext);
 
-  const bookmarkClickHandler = () => {
-    stylesCtx.changeState("bookmarksHeader");
-  };
+  const bookmarksState = stylesCtx.state.bookmarksHeaderState;
+  const recipeDetailsBookmarkClicked = stylesCtx.state.bookmarkRecipeState;
 
+  useEffect(() => {
+    if (localStorage.length > 0) {
+      setRecipeData(JSON.parse(localStorage.getItem("data") || "[]"));
+    }
+  }, [recipeDetailsBookmarkClicked]);
+
+  const bookmarkClickHandler = () => {
+    stylesCtx.changeBookmarksHeaderState(!bookmarksState);
+  };
   return (
     <>
       {
         <button
           className={`${classes["bookmarks-button"]} ${
-            stylesCtx.state.bookmarksHeaderState
-              ? classes["bookmarks-button-clicked"]
-              : ""
+            bookmarksState && classes["bookmarks-button-clicked"]
           }`}
           onClick={bookmarkClickHandler}
         >
@@ -33,12 +40,23 @@ const Bookmarks = () => {
       {
         <div
           className={`${classes["bookmarked-recipes"]} ${
-            stylesCtx.state.bookmarksHeaderState
-              ? classes["bookmark-clicked"]
-              : ""
+            bookmarksState && classes["bookmark-clicked"]
           }`}
         >
-          <div className={classes["recipes-list"]}></div>
+          <div className={classes["recipes-list"]}>
+            {recipeData !== [] &&
+              recipeData.map((recipe: any) => {
+                return (
+                  <Recipe
+                    key={recipe.id}
+                    title={recipe.title}
+                    image={recipe.image}
+                    publisher={recipe.publisher}
+                    id={recipe.id}
+                  />
+                );
+              })}
+          </div>
         </div>
       }
     </>

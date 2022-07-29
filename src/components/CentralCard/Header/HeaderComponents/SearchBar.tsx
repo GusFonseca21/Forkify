@@ -7,6 +7,7 @@ import classes from "./SearchBar.module.css";
 
 import { GoSearch } from "react-icons/go";
 
+
 const SearchBar = () => {
   const stylesCtx = useContext(StylesContext);
   const fetchCtx = useContext(FetchRecipesContext);
@@ -40,6 +41,8 @@ const SearchBar = () => {
         placeholder="Search over 1,000,000 recipes..."
         ref={searchBarTextInputRef}
       />
+
+
       <button className={classes["search-button"]}>
         <GoSearch className={classes["search-icon"]} />
         <span className={classes["search-button-text"]}>SEARCH</span>
