@@ -20,9 +20,11 @@ const SelectedRecipe = () => {
   const foundRecipesControllerState =
     stylesCtx.state.foundRecipesControllerState;
   const isSelectedRecipeLoading = stylesCtx.state.selectedRecipeLoadingState;
-  const hasError = errorCtx.fetchSelectedRecipeStatus;
-  const foundRecipesHasError = errorCtx.fetchRecipesStatus;
-  const errorMessage = errorCtx.fetchSelectedRecipeErrorMessage;
+  const fetchSelectedRecipesHasError = errorCtx.fetchSelectedRecipeStatus;
+  const fetchFoundRecipesHasError = errorCtx.fetchRecipesStatus;
+  const fetchSelectedRecipesErrorMessage =
+    errorCtx.fetchSelectedRecipeErrorMessage;
+  const fetchFoundRecipesErrorMessage = errorCtx.fetchRecipesErrorMessage;
 
   const closeFoundRecipes = () => {
     if (foundRecipesControllerState) {
@@ -35,21 +37,29 @@ const SelectedRecipe = () => {
       <div
         className={`${classes.body} ${
           foundRecipesControllerState &&
-          !foundRecipesHasError &&
+          !fetchFoundRecipesHasError &&
           classes["found-recipes-open"]
         }`}
       >
-        {hasError && (
-          <span className={classes["error-message"]}>{errorMessage}</span>
+        {fetchSelectedRecipesHasError && (
+          <span
+            className={`${classes["fetch-selected-recipe-error-message"]} ${classes["error-message"]}`}
+          >
+            {fetchSelectedRecipesErrorMessage}
+          </span>
+        )}
+        {fetchFoundRecipesHasError && (
+          <span
+            className={`${classes["fetch-found-recipes-error-message"]} ${classes["error-message"]}`}
+          >
+            {fetchFoundRecipesErrorMessage}
+          </span>
         )}
         {recipeId === undefined && (
-          <div className={classes["starting-message"]}>
+          <span className={classes["starting-message"]}>
             <BsEmojiSmile className={classes["starting-message-emoji"]} />
-            <p>
-              Start by searching for a recipe or an ingredient.
-              <br /> Have fun!
-            </p>
-          </div>
+            Start by searching for a recipe or an ingredient. Have fun!
+          </span>
         )}
         {isSelectedRecipeLoading && (
           <LinearProgress className={classes["loading-bar"]} />

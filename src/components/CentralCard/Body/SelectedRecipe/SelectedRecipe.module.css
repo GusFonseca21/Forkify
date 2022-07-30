@@ -14,16 +14,25 @@
   z-index: 6;
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
   margin-top: 5rem;
+  padding: 0 1rem 0 1rem;
   text-align: center;
   font-size: 1.2rem;
   color: #596474;
+}
+
+.fetch-found-recipes-error-message.error-message {
+  visibility: hidden;
 }
 
 .error-message {
   position: absolute;
   font-weight: 700;
   top: 3%;
+  left: 50%;
+  transform: translateX(-50%);
   text-align: center;
   color: red;
 }
@@ -56,5 +65,15 @@
   .body.found-recipes-open {
     filter: blur(1.5px);
     pointer-events: none;
+  }
+
+  .fetch-found-recipes-error-message.error-message {
+    visibility: visible;
+  }
+}
+
+@media (max-width: 567px) {
+  .starting-message-emoji {
+    margin-bottom: 0.5rem;
   }
 }

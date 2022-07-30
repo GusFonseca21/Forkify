@@ -51,7 +51,7 @@
 }
 
 .recipes::-webkit-scrollbar {
-  width: 0.5rem;
+  width: 0.3rem;
 }
 .recipes::-webkit-scrollbar-thumb {
   background: rgb(49, 120, 198);
@@ -97,6 +97,12 @@
   }
   .error-message {
     display: none;
+  }
+}
+
+@media (max-width: 470px) {
+  .found-recipes {
+    max-width: 80%;
   }
 }
 

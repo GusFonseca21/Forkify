@@ -14,14 +14,11 @@ import LinearProgress from "@mui/material/LinearProgress";
 import { ErrorContext } from "../../store/error-context";
 const Header = () => {
   const stylesCtx = useContext(StylesContext);
-  const errorCtx = useContext(ErrorContext);
 
   const foundRecipesControllerState =
     stylesCtx.state.foundRecipesControllerState;
 
   const isFoundRecipesLoading = stylesCtx.state.foundRecipesLoadingState;
-  const hasError = errorCtx.fetchRecipesStatus;
-  const errorMessage = errorCtx.fetchRecipesErrorMessage;
   const closeFoundRecipes = () => {
     if (foundRecipesControllerState) {
       stylesCtx.changeFoundRecipesControllerState(false);
@@ -30,14 +27,7 @@ const Header = () => {
 
   return (
     <div onClick={closeFoundRecipes}>
-      <header
-        className={`${classes.header} ${
-          foundRecipesControllerState && !hasError && classes["found-recipes-open"]
-        }`}
-      >
-        {hasError && (
-          <span className={classes["error-message"]}>{errorMessage}</span>
-        )}
+      <header className={classes.header}>
         <Link href="/">
           <img src="/logo.png" className={classes.logo} alt="Forkify logo" />
         </Link>

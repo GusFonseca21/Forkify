@@ -79,6 +79,13 @@
 
 @media (max-width: 400px) {
   .search-button {
-    width: auto;
+    min-width: auto;
+    width: 4rem;
+  }
+  .search-button-text {
+    display: none;
+  }
+  .search-icon {
+    margin: 0;
   }
 }

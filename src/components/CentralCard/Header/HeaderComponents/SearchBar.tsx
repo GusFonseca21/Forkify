@@ -7,7 +7,6 @@ import classes from "./SearchBar.module.css";
 
 import { GoSearch } from "react-icons/go";
 
-
 const SearchBar = () => {
   const stylesCtx = useContext(StylesContext);
   const fetchCtx = useContext(FetchRecipesContext);
@@ -31,17 +30,15 @@ const SearchBar = () => {
     <form
       onSubmit={searchButtonClickHandler}
       className={`${classes.form} ${
-        stylesCtx.state.searchButtonState
-          ? classes["search-button-click-animation"]
-          : ""
+        stylesCtx.state.searchButtonState &&
+        classes["search-button-click-animation"]
       }`}
     >
       <input
         className={classes["search-bar"]}
-        placeholder="Search over 1,000,000 recipes..."
+        placeholder="Ex: cake, pizza, chicken..."
         ref={searchBarTextInputRef}
       />
-
 
       <button className={classes["search-button"]}>
         <GoSearch className={classes["search-icon"]} />

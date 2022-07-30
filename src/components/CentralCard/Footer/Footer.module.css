@@ -37,13 +37,6 @@
   }
 }
 
-@media (max-height: 570px) {
-  .footer-text {
-    display: flex;
-    gap: 1rem;
-  }
-}
-
 @media (max-width: 355px), (max-height: 570px) {
   .footer-text-gustavo span {
     display: none;

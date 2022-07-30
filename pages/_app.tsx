@@ -6,20 +6,23 @@ import FetchRecipesContextProvider from "../src/components/store/fetch-recipes-c
 import "../styles/globals.css";
 import ErrorContextProvider from "../src/components/store/error-context";
 import Layout from "../src/Layout/Layout";
-// import BookmarkContextProvider from "../src/components/store/bookmark-recipe-context";
-
+import Head from "next/head";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <FetchRecipesContextProvider>
         <StateContextProvider>
-          {/* <BookmarkContextProvider> */}
-            <ErrorContextProvider>
-              <Layout>
+          <ErrorContextProvider>
+            <Layout>
+              <Head>
+                <meta
+                  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+                  name="viewport"
+                />
                 <Component {...pageProps} />
-              </Layout>
-            </ErrorContextProvider>
-          {/* </BookmarkContextProvider> */}
+              </Head>
+            </Layout>
+          </ErrorContextProvider>
         </StateContextProvider>
       </FetchRecipesContextProvider>
     </>
