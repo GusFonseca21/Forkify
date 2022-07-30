@@ -8,6 +8,18 @@ import ErrorContextProvider from "../src/components/store/error-context";
 import Layout from "../src/Layout/Layout";
 import Head from "next/head";
 function MyApp({ Component, pageProps }: AppProps) {
+  setTimeout(
+    () =>
+      document
+        .querySelector("meta[name=viewport]")
+        ?.setAttribute(
+          "content",
+          "height=" +
+            screen.height * 0.9 +
+            "px, width=device-width, initial-scale=1.0"
+        ),
+    300
+  );
   return (
     <>
       <FetchRecipesContextProvider>
