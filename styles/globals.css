@@ -34,11 +34,5 @@ body > div:first-child,
 div#__next,
 div#__next > div {
   height: 100%;
-}
 
-@media (max-width: 450px) {
-  html {
-    height: 85vh;
-    overflow: hidden;
-  }
 }
