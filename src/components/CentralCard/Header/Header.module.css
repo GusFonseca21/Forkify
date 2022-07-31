@@ -38,7 +38,7 @@
 
 .loading-bar {
   width: 100%;
-  position: absolute;
+  position: absolute !important;
   bottom: 0;
   display: none;
 }

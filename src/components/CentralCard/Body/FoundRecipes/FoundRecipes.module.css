@@ -1,14 +1,13 @@
 .found-recipes {
   z-index: 3;
   width: 100%;
-  max-height: 100%;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   position: relative;
   transition: all 300ms ease;
-  overflow: hidden;
 }
 
 .error-message {
@@ -85,7 +84,8 @@
     width: 2.5rem;
     height: 2.5rem;
     top: 2%;
-    left: 10%;
+    left: 100%;
+    overflow:auto;
     z-index: 1000;
     background-image: linear-gradient(
       to top right,
