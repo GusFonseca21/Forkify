@@ -33,13 +33,13 @@ const SelectedRecipe = () => {
   };
 
   return (
-    <div onClick={closeFoundRecipes}>
       <div
         className={`${classes.body} ${
           foundRecipesControllerState &&
           !fetchFoundRecipesHasError &&
           classes["found-recipes-open"]
         }`}
+        onClick={closeFoundRecipes}
       >
         {fetchSelectedRecipesHasError && (
           <span
@@ -66,7 +66,6 @@ const SelectedRecipe = () => {
         )}
         {recipeId !== undefined && <SelectedRecipeComponents />}
       </div>
-    </div>
   );
 };
 

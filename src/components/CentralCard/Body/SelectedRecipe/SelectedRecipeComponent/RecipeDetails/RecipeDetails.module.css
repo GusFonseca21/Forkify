@@ -106,10 +106,6 @@
   }
 }
 
-@media (max-width: 380px), (max-height: 680px) {
-
-}
-
 @media (max-width: 375px) {
   .recipe-details {
     padding: 3rem 0.5rem 3rem 0.5rem;

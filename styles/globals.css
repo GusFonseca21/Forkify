@@ -27,3 +27,11 @@ a {
   background: transparent;
   font-family: "Nunito Sans", Helvetica Neue, sans-serif;
 }
+
+html,
+body,
+body > div:first-child,
+div#__next,
+div#__next > div {
+  height: 100%;
+}

@@ -11,7 +11,6 @@ import AddRecipe from "./HeaderComponents/AddRecipe";
 import Bookmarks from "./HeaderComponents/Bookmarks";
 
 import LinearProgress from "@mui/material/LinearProgress";
-import { ErrorContext } from "../../store/error-context";
 const Header = () => {
   const stylesCtx = useContext(StylesContext);
 
@@ -26,8 +25,7 @@ const Header = () => {
   };
 
   return (
-    <div onClick={closeFoundRecipes}>
-      <header className={classes.header}>
+      <header className={classes.header} onClick={closeFoundRecipes}>
         <Link href="/">
           <img src="/logo.png" className={classes.logo} alt="Forkify logo" />
         </Link>
@@ -47,7 +45,6 @@ const Header = () => {
           <LinearProgress className={classes["loading-bar"]} />
         )}
       </header>
-    </div>
   );
 };
 

@@ -4,7 +4,7 @@
   justify-content: center;
   font-size: 0.9rem;
   color: #b2bec3;
-  height: 10vh;
+  height: 10%;
   grid-column: 1/3;
   border-top: 2px solid rgb(49, 120, 198);
 }
@@ -33,7 +33,7 @@
 
 @media (max-width: 1000px) {
   .footer {
-    height: 12vh;
+    height: 12%;
   }
 }
 

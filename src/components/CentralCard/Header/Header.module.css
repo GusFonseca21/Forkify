@@ -1,7 +1,6 @@
 .header {
   z-index: 9;
-  min-height: 12vh;
-  height: 12vh;
+  height: 12%;
   width: 100%;
   background-color: #f9f5f3;
   border-top-left-radius: 15px;
