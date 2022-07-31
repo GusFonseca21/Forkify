@@ -28,6 +28,7 @@ export default function useFetchRecipes() {
           );
           errorCtx.changeFetchRecipesStatus(response.ok);
           stylesCtx.changeFoundRecipesLoadingState(false);
+          return;
         }
         const data = await response.json();
 
@@ -35,6 +36,7 @@ export default function useFetchRecipes() {
           errorCtx.getFetchRecipesErrorMessage("No results were found!");
           errorCtx.changeFetchRecipesStatus(false);
           stylesCtx.changeFoundRecipesLoadingState(false);
+          return;
         }
 
         const recipes = data.data.recipes;

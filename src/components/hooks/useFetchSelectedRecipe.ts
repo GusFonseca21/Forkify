@@ -37,6 +37,7 @@ export default function useFetchSelectedRecipe() {
             `Something went wrong! Error: ${response.statusText}. Status Code: ${response.status}`
           );
           errorCtx.changeFetchSelectedRecipeStatus(response.ok);
+          return;
         }
 
         const data = await response.json();
