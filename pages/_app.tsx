@@ -8,6 +8,9 @@ import ErrorContextProvider from "../src/components/store/error-context";
 import Layout from "../src/Layout/Layout";
 import Head from "next/head";
 function MyApp({ Component, pageProps }: AppProps) {
+  if (process.browser) {
+    document.body.style.height = "window.innerHeight";
+  }
   setTimeout(
     () =>
       document
