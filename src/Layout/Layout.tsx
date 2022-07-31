@@ -9,11 +9,6 @@ import Footer from "../components/CentralCard/Footer/Footer";
 import Header from "../components/CentralCard/Header/Header";
 
 const Layout: React.FC<{ children: React.ReactNode }> = (props) => {
-  if (typeof window !== "undefined") {
-    const height = window.innerHeight;
-    document.body.style.height = height.toString();
-    console.log(window.innerHeight);
-  }
   return (
     <Background>
       <CentralCard>
