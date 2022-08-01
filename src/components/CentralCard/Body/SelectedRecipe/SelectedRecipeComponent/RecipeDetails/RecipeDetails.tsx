@@ -18,8 +18,6 @@ const RecipeDetails: React.FC<{
     newServings: number;
     oldServings: number;
   }) => void;
-  addServings: () => void;
-  removeServings: () => void;
 }> = (props) => {
   const stylesCtx = useContext(StylesContext);
 
@@ -61,13 +59,12 @@ const RecipeDetails: React.FC<{
     }
   };
   const addServings = () => {
-    props.addServings();
-    // if (props.servings < 20) {
-    //   props.changeServings({
-    //     newServings: props.servings + 1,
-    //     oldServings: props.servings,
-    //   });
-    // }
+    if (props.servings < 20) {
+      props.changeServings({
+        newServings: props.servings + 1,
+        oldServings: props.servings,
+      });
+    }
   };
 
   const removeServings = () => {
@@ -76,7 +73,6 @@ const RecipeDetails: React.FC<{
         newServings: props.servings - 1,
         oldServings: props.servings,
       });
-      props.removeServings();
     }
   };
   return (

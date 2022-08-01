@@ -25,8 +25,6 @@ const SelectedRecipe = () => {
     },
   ]);
 
-
-
   const stylesCtx = useContext(StylesContext);
   const errorCtx = useContext(ErrorContext);
   const router = useRouter();
@@ -49,25 +47,16 @@ const SelectedRecipe = () => {
 
   const recipeData = useFetchSelectedRecipe();
 
-  const addServings = () => {
-    if (servings.newServings < 20) {
-      setServings({
-        newServings: servings.oldServings + 1,
-        oldServings: servings.oldServings,
-      });
-      ingredients.forEach((ingredient) => {
-        ingredient.quantity =
-          (ingredient.quantity * servings.newServings) / servings.oldServings;
-      });
-    }
-  };
-
-  const removeServings = () => {
-    ingredients.forEach((ingredient) => {
-      ingredient.quantity =
-        (ingredient.quantity * servings.newServings) / servings.oldServings;
+  useEffect(() => {
+    const transformedIngredients = ingredients.map((ingredient) => {
+      return {
+        ...ingredient,
+        quantity: (ingredient.quantity =
+          (ingredient.quantity * servings.newServings) / servings.oldServings),
+      };
     });
-  };
+    setIngredients(transformedIngredients);
+  }, [servings]);
 
   useEffect(() => {
     setServings({
@@ -129,8 +118,6 @@ const SelectedRecipe = () => {
                 oldServings: servings.oldServings,
               })
             }
-            addServings={addServings}
-            removeServings={removeServings}
           />
           <RecipeIngredients
             ingredients={ingredients}
