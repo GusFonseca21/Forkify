@@ -7,7 +7,6 @@ import classes from "./RecipeDetails.module.css";
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 import { BsBookmark, BsFillBookmarkFill, BsClock } from "react-icons/bs";
 import { IoPeopleOutline } from "react-icons/io5";
-
 const RecipeDetails: React.FC<{
   cookingTime: number;
   servings: number;
@@ -15,6 +14,12 @@ const RecipeDetails: React.FC<{
   publisher: string;
   title: string;
   id: string;
+  changeServings: (servings: {
+    newServings: number;
+    oldServings: number;
+  }) => void;
+  addServings: () => void;
+  removeServings: () => void;
 }> = (props) => {
   const stylesCtx = useContext(StylesContext);
 
@@ -55,6 +60,25 @@ const RecipeDetails: React.FC<{
       stylesCtx.changeBookmarkedRecipeState(true);
     }
   };
+  const addServings = () => {
+    props.addServings();
+    // if (props.servings < 20) {
+    //   props.changeServings({
+    //     newServings: props.servings + 1,
+    //     oldServings: props.servings,
+    //   });
+    // }
+  };
+
+  const removeServings = () => {
+    if (props.servings > 1) {
+      props.changeServings({
+        newServings: props.servings - 1,
+        oldServings: props.servings,
+      });
+      props.removeServings();
+    }
+  };
   return (
     <div className={classes["recipe-details"]}>
       <div className={classes["timing-and-servings"]}>
@@ -72,8 +96,14 @@ const RecipeDetails: React.FC<{
             servings
           </span>
           <div className={classes["servings-buttons"]}>
-            <AiOutlinePlusCircle className={classes.plus} />
-            <AiOutlineMinusCircle className={classes.minus} />
+            <AiOutlinePlusCircle
+              className={classes.plus}
+              onClick={addServings}
+            />
+            <AiOutlineMinusCircle
+              className={classes.minus}
+              onClick={removeServings}
+            />
           </div>
         </div>
       </div>

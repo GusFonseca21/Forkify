@@ -27,6 +27,7 @@ export default function useFetchSelectedRecipe() {
     if (recipeId !== undefined) {
       errorCtx.changeFetchSelectedRecipeStatus(true);
       stylesCtx.changeSelectedRecipeLoadingState(true);
+      errorCtx.changeFetchRecipesStatus(true);
       const fetchRecipe = async () => {
         const response = await fetch(
           `https://forkify-api.herokuapp.com/api/v2/recipes/${recipeId}`

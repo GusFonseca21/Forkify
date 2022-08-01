@@ -1,4 +1,3 @@
-import React, { ReactEventHandler } from "react";
 import classes from "./ImageAndTitle.module.css";
 
 const ImageAndTitle: React.FC<{ image: string; title: string }> = (props) => {
