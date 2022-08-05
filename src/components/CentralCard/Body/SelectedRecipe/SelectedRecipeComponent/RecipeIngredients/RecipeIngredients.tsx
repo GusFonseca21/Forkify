@@ -1,7 +1,5 @@
 import classes from "./RecipeIngredients.module.css";
 
-import HowToCookIt from "./HowToCookIt/HowToCookIt";
-
 import { AiOutlineCheck } from "react-icons/ai";
 
 const RecipeIngredients: React.FC<{
@@ -27,14 +25,13 @@ const RecipeIngredients: React.FC<{
               </i>
               <span className={classes["ingredient"]}>
                 {`${
-                  ingredient.quantity !== null ? ` ${ingredient.quantity}` : ""
+                  ingredient.quantity !== 0 ? ` ${ingredient.quantity}` : ""
                 } ${ingredient.unit} ${ingredient.description}`}
               </span>
             </div>
           ))}
         </div>
       </div>
-      <HowToCookIt source={props.source} />
     </div>
   );
 };

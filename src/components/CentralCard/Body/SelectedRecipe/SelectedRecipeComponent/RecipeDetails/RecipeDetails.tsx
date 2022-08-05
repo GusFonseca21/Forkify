@@ -14,6 +14,7 @@ const RecipeDetails: React.FC<{
   publisher: string;
   title: string;
   id: string;
+  recipeKey: string;
   changeServings: (servings: {
     newServings: number;
     oldServings: number;
@@ -42,6 +43,7 @@ const RecipeDetails: React.FC<{
       image: props.image,
       id: props.id,
       publisher: props.publisher,
+      ...(props.recipeKey && { key: props.recipeKey }),
     };
 
     if (isBookmarked) {

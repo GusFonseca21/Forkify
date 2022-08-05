@@ -13,6 +13,7 @@ const SearchBar = () => {
 
   const searchBarTextInputRef = useRef<HTMLInputElement>(null);
 
+
   const searchButtonClickHandler = (event: React.FormEvent) => {
     event.preventDefault();
 

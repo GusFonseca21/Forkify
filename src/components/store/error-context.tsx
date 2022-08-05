@@ -27,7 +27,7 @@ const ErrorContextProvider: React.FC<{ children: React.ReactNode }> = (
 ) => {
   const [fetchRecipesError, setFetchRecipesError] = useState("");
   const [fetchSelectedRecipeError, setFetchSelectedRecipeError] = useState("");
-  const [fetchRecipesStatus, setFetchRecipeStatus] = useState(true);
+  const [fetchRecipesStatus, setFetchRecipeStatus] = useState(false);
   const [fetchSelectedRecipeStatus, setFetchSelectedRecipeStatus] =
     useState(true);
 

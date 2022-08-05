@@ -5,7 +5,7 @@
   height: 100%;
   max-width: 100%;
   padding: 1.5rem;
-  transition: all 300ms;
+  transition: all 100ms ease;
   color: #596474;
 }
 
@@ -53,7 +53,7 @@
 .bookmarks-button + .bookmarked-recipes {
   visibility: hidden;
   opacity: 0;
-  transition: all 500ms ease;
+  transition: all 350ms ease-in;
 }
 
 .bookmarked-recipes:hover,

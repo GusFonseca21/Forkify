@@ -9,6 +9,9 @@ type StylesContextObj = {
     addRecipeHeaderState: boolean;
     foundRecipesLoadingState: boolean;
     selectedRecipeLoadingState: boolean;
+    uploadRecipeButtonState: boolean;
+    deleteRecipeButtonState: boolean;
+    wasRecipeDeletedState: boolean;
   };
   changeState: (element: string) => void;
   changeBookmarksHeaderState: (value: boolean) => void;
@@ -16,6 +19,9 @@ type StylesContextObj = {
   changeFoundRecipesLoadingState: (value: boolean) => void;
   changeSelectedRecipeLoadingState: (value: boolean) => void;
   changeFoundRecipesControllerState: (value: boolean) => void;
+  clickAnimationUploadButton: () => void;
+  changeDeleteRecipeButton: (value: boolean) => void;
+  wasRecipeDeleted: () => void;
 };
 
 export const StylesContext = React.createContext<StylesContextObj>({
@@ -27,6 +33,9 @@ export const StylesContext = React.createContext<StylesContextObj>({
     addRecipeHeaderState: false,
     foundRecipesLoadingState: false,
     selectedRecipeLoadingState: false,
+    uploadRecipeButtonState: false,
+    deleteRecipeButtonState: false,
+    wasRecipeDeletedState: false,
   },
   changeState: () => {},
   changeBookmarksHeaderState: () => {},
@@ -34,6 +43,9 @@ export const StylesContext = React.createContext<StylesContextObj>({
   changeFoundRecipesLoadingState: () => {},
   changeSelectedRecipeLoadingState: () => {},
   changeFoundRecipesControllerState: () => {},
+  clickAnimationUploadButton: () => {},
+  changeDeleteRecipeButton: () => {},
+  wasRecipeDeleted: () => {},
 });
 
 const StylesContextProvider: React.FC<{ children: React.ReactNode }> = (
@@ -46,6 +58,9 @@ const StylesContextProvider: React.FC<{ children: React.ReactNode }> = (
   const [addRecipeHeader, setAddRecipeHeader] = useState(false);
   const [isFoundRecipesLoading, setIsFoundRecipesLoading] = useState(false);
   const [isSelectedRecipeLoading, setIsSelectedRecipeLoading] = useState(false);
+  const [uploadedRecipeButton, setUploadedRecipeButton] = useState(false);
+  const [deleteButton, setDeleteButton] = useState(false);
+  const [deletedRecipeState, setDeletedRecipeState] = useState(false);
 
   const changeState = (element: string) => {
     if (element === "searchButton") {
@@ -75,8 +90,26 @@ const StylesContextProvider: React.FC<{ children: React.ReactNode }> = (
     setIsFoundRecipesLoading(value);
   };
 
+  const changeDeleteRecipeButton = (value: boolean) => {
+    setDeleteButton(value);
+  };
+
   const changeSelectedRecipeLoadingState = (value: boolean) => {
     setIsSelectedRecipeLoading(value);
+  };
+
+  const clickAnimationUploadButton = () => {
+    setUploadedRecipeButton(true);
+    setTimeout(() => {
+      setUploadedRecipeButton(false);
+    }, 1 * 1000);
+  };
+
+  const wasRecipeDeleted = () => {
+    setDeletedRecipeState(true);
+    setTimeout(() => {
+      setDeletedRecipeState(false);
+    }, 1);
   };
 
   const contextValue: StylesContextObj = {
@@ -88,6 +121,9 @@ const StylesContextProvider: React.FC<{ children: React.ReactNode }> = (
       addRecipeHeaderState: addRecipeHeader,
       foundRecipesLoadingState: isFoundRecipesLoading,
       selectedRecipeLoadingState: isSelectedRecipeLoading,
+      uploadRecipeButtonState: uploadedRecipeButton,
+      deleteRecipeButtonState: deleteButton,
+      wasRecipeDeletedState: deletedRecipeState,
     },
     changeState,
     changeBookmarksHeaderState,
@@ -95,6 +131,9 @@ const StylesContextProvider: React.FC<{ children: React.ReactNode }> = (
     changeFoundRecipesLoadingState,
     changeSelectedRecipeLoadingState,
     changeFoundRecipesControllerState,
+    clickAnimationUploadButton,
+    changeDeleteRecipeButton,
+    wasRecipeDeleted,
   };
 
   return (

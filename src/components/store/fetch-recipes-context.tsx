@@ -5,6 +5,8 @@ type FetchRecipesObj = {
   inputText: string;
   getId: (id: string) => void;
   id: string;
+  getNewRecipe: (recipeData: {}) => void;
+  newRecipe: {};
 };
 
 export const FetchRecipesContext = React.createContext<FetchRecipesObj>({
@@ -12,6 +14,8 @@ export const FetchRecipesContext = React.createContext<FetchRecipesObj>({
   inputText: "",
   getId: () => {},
   id: "",
+  getNewRecipe: () => {},
+  newRecipe: {},
 });
 
 const FetchRecipesContextProvider: React.FC<{ children: React.ReactNode }> = (
@@ -19,6 +23,7 @@ const FetchRecipesContextProvider: React.FC<{ children: React.ReactNode }> = (
 ) => {
   const [inputtedText, setInputText] = useState("");
   const [selectedId, setSelectedId] = useState("");
+  const [newRecipe, setNewRecipe] = useState({});
 
   const getInputText = (search: string) => {
     setInputText(search);
@@ -28,11 +33,17 @@ const FetchRecipesContextProvider: React.FC<{ children: React.ReactNode }> = (
     setSelectedId(id);
   };
 
+  const getNewRecipe = (recipeData: {}) => {
+    setNewRecipe(recipeData);
+  };
+
   const contextValue: FetchRecipesObj = {
     getInputText,
     inputText: inputtedText,
     getId,
     id: selectedId,
+    getNewRecipe,
+    newRecipe,
   };
 
   return (

@@ -35,9 +35,11 @@ const FoundRecipes = () => {
   };
 
   return (
-    <div
+    <section
       className={`${classes["found-recipes"]} ${
-        isFoundRecipesControllerOpen && classes["show-found-recipes"]
+        isFoundRecipesControllerOpen &&
+        !hasError &&
+        classes["show-found-recipes"]
       }`}
     >
       {hasError && (
@@ -45,7 +47,7 @@ const FoundRecipes = () => {
       )}
       <div
         className={`${classes["found-recipe-controller-buttons"]} ${
-          !hasEnteredText && classes["no-recipes-searched"]
+          hasEnteredText !== "" || (!hasError && classes["no-recipes-searched"])
         }`}
       >
         {!isFoundRecipesControllerOpen ? (
@@ -60,31 +62,34 @@ const FoundRecipes = () => {
           />
         )}
       </div>
-      {isLoading && !hasError ? (
+      {isLoading ? (
         <LinearProgress className={classes.loading} />
       ) : (
         <div className={classes.recipes}>
-          {fetchedRecipes.map(
-            (recipe: {
-              image_url: string;
-              publisher: string;
-              title: string;
-              id: string;
-            }) => {
-              return (
-                <Recipe
-                  key={recipe.id}
-                  image={recipe.image_url}
-                  title={recipe.title}
-                  publisher={recipe.publisher}
-                  id={recipe.id}
-                />
-              );
-            }
-          )}
+          {!hasError &&
+            fetchedRecipes.map(
+              (recipe: {
+                image_url: string;
+                publisher: string;
+                title: string;
+                id: string;
+                key: string;
+              }) => {
+                return (
+                  <Recipe
+                    key={recipe.id}
+                    image={recipe.image_url}
+                    title={recipe.title}
+                    publisher={recipe.publisher}
+                    id={recipe.id}
+                    recipeKey={recipe.key}
+                  />
+                );
+              }
+            )}
         </div>
       )}
-    </div>
+    </section>
   );
 };
 

@@ -12,6 +12,7 @@ export default function useFetchRecipes() {
   const errorCtx = useContext(ErrorContext);
 
   const searchInput = fetchCtx.inputText;
+  const deletedRecipeState = stylesCtx.state.wasRecipeDeletedState;
 
   useEffect(() => {
     if (searchInput !== "") {
@@ -19,7 +20,7 @@ export default function useFetchRecipes() {
       stylesCtx.changeFoundRecipesLoadingState(true);
       const fetchRecipes = async () => {
         const response = await fetch(
-          `https://forkify-api.herokuapp.com/api/v2/recipes?search=${searchInput}`
+          `https://forkify-api.herokuapp.com/api/v2/recipes?search=${searchInput}&key=4871af3e-9c8a-4b50-b116-b7298ada9115`
         );
 
         if (!response.ok) {
@@ -47,7 +48,7 @@ export default function useFetchRecipes() {
       };
       fetchRecipes();
     }
-  }, [searchInput]);
+  }, [searchInput, deletedRecipeState]);
 
   return recipesArr;
 }

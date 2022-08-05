@@ -53,6 +53,7 @@ const Bookmarks = () => {
                     image={recipe.image}
                     publisher={recipe.publisher}
                     id={recipe.id}
+                    recipeKey={recipe.key}
                   />
                 );
               })}

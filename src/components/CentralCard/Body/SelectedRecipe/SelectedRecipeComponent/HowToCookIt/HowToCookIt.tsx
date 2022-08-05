@@ -1,10 +1,28 @@
+import { useContext } from "react";
+
+import { StylesContext } from "../../../../../store/styles-context";
+
 import classes from "./HowToCookIt.module.css";
 
 import { GiClick } from "react-icons/gi";
 
-const HowToCookIt: React.FC<{ source: string }> = (props) => {
+const HowToCookIt: React.FC<{ source: string; recipeKey: boolean }> = (
+  props
+) => {
+  const stylesCtx = useContext(StylesContext);
+
+  const deleteRecipeHandler = () => {
+    stylesCtx.changeDeleteRecipeButton(true);
+  };
+
+
+
   return (
-    <div className={classes["how-to-cook-it"]}>
+    <div
+      className={`${classes["how-to-cook-it"]} ${
+        props.recipeKey && classes["user-recipe-mark"]
+      }`}
+    >
       <h3 className={classes["how-to-title"]}>HOW TO COOK IT</h3>
 
       <p className={classes["how-to-paragraph"]}>
@@ -24,6 +42,14 @@ const HowToCookIt: React.FC<{ source: string }> = (props) => {
           <GiClick />
         </i>
       </a>
+      {props.recipeKey && (
+        <button
+          className={classes["delete-recipe-button"]}
+          onClick={deleteRecipeHandler}
+        >
+          Delete Recipe
+        </button>
+      )}
     </div>
   );
 };

@@ -6,14 +6,25 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
 }
+
+.successfull-upload {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 2rem;
+  color: rgb(49, 120, 198);
+}
+
 .add-recipe-card {
   display: none;
   z-index: 1000;
   position: fixed;
   left: 50%;
   top: 50%;
-  width: 70rem;
-  max-height: 90%;
+  width: 68.7rem;
+  max-height: 70%;
   transform: translate(-50%, -50%);
   background-color: #fff;
   border-radius: 15px;
@@ -30,8 +41,10 @@
 .close-card-icon:active {
   font-size: 2rem;
   position: absolute;
-  right: 1%;
+  right: 2%;
+  top: 3%;
   cursor: pointer;
+  color: #596474;
 }
 
 .add-recipe-form {
@@ -101,6 +114,19 @@
 .form-button-icon {
   font-size: 1.3rem;
   margin-right: 0.3rem;
+}
+
+.error-message {
+  position: absolute;
+  font-weight: 700;
+  font-size: 1.2rem;
+  top: 3%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 100;
+  padding: 0.3rem;
+  color: red;
 }
 
 @keyframes scale {

@@ -10,6 +10,15 @@
   overflow-y: scroll;
 }
 
+.user-recipe-mark {
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  z-index: 100;
+  color: #fff;
+  font-size: 1.7rem;
+}
+
 .starting-message {
   z-index: 6;
   display: flex;
@@ -36,7 +45,7 @@
   text-align: center;
   z-index: 100;
   padding: 0.3rem;
-  background-color: #F1F2F6;
+  background-color: #f1f2f6;
   color: red;
 }
 
@@ -63,6 +72,7 @@
 .body::-webkit-scrollbar-track {
   background-color: #aeaeb1;
 }
+
 
 @media (max-width: 1000px) {
   .body.found-recipes-open {

@@ -13,7 +13,9 @@ import RecipeIngredients from "./SelectedRecipeComponent/RecipeIngredients/Recip
 import useFetchSelectedRecipe from "../../../hooks/useFetchSelectedRecipe";
 
 import { BsEmojiSmile } from "react-icons/bs";
+import { BiUserCircle } from "react-icons/bi";
 import LinearProgress from "@mui/material/LinearProgress";
+import HowToCookIt from "./SelectedRecipeComponent/HowToCookIt/HowToCookIt";
 
 const SelectedRecipe = () => {
   const [servings, setServings] = useState({ newServings: 0, oldServings: 0 });
@@ -27,8 +29,14 @@ const SelectedRecipe = () => {
 
   const stylesCtx = useContext(StylesContext);
   const errorCtx = useContext(ErrorContext);
-  const router = useRouter();
-  const recipeId = router.query.id;
+
+  const { query } = useRouter() || { query: { text: "" } };
+
+  const recipeId = query.id;
+
+  // const router = useRouter();
+
+  // const recipeId = router.query.id;
 
   const foundRecipesControllerState =
     stylesCtx.state.foundRecipesControllerState;
@@ -46,6 +54,9 @@ const SelectedRecipe = () => {
   };
 
   const recipeData = useFetchSelectedRecipe();
+
+  // @ts-ignore
+  const isRecipeFromUser = recipeData.key !== undefined;
 
   useEffect(() => {
     const transformedIngredients = ingredients.map((ingredient) => {
@@ -67,7 +78,7 @@ const SelectedRecipe = () => {
   }, [recipeData.servings, recipeData.ingredients]);
 
   return (
-    <div
+    <section
       className={`${classes.body} ${
         foundRecipesControllerState &&
         !fetchFoundRecipesHasError &&
@@ -95,12 +106,15 @@ const SelectedRecipe = () => {
           Start by searching for a recipe or an ingredient. Have fun!
         </span>
       )}
-      {isSelectedRecipeLoading && (
+      {isSelectedRecipeLoading && !fetchSelectedRecipesHasError && (
         <LinearProgress className={classes["loading-bar"]} />
       )}
 
       {recipeData.image !== "" && recipeId !== undefined && (
         <>
+          {isRecipeFromUser && (
+            <BiUserCircle className={classes["user-recipe-mark"]} />
+          )}
           <ImageAndTitle image={recipeData.image} title={recipeData.title} />
           <RecipeDetails
             cookingTime={recipeData.cookingTime}
@@ -109,6 +123,8 @@ const SelectedRecipe = () => {
             publisher={recipeData.publisher}
             title={recipeData.title}
             id={recipeData.id}
+            // @ts-ignore
+            recipeKey={recipeData.key}
             changeServings={(servings: {
               newServings: number;
               oldServings: number;
@@ -124,9 +140,13 @@ const SelectedRecipe = () => {
             id={recipeData.id}
             source={recipeData.source}
           />
+          <HowToCookIt
+            source={recipeData.source}
+            recipeKey={isRecipeFromUser}
+          />
         </>
       )}
-    </div>
+    </section>
   );
 };
 

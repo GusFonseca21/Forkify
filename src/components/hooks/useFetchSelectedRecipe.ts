@@ -1,7 +1,9 @@
 import { useState, useEffect, useContext } from "react";
+
 import { ErrorContext } from "../store/error-context";
 
 import { useRouter } from "next/router";
+
 import { StylesContext } from "../store/styles-context";
 
 export default function useFetchSelectedRecipe() {
@@ -19,9 +21,13 @@ export default function useFetchSelectedRecipe() {
   const errorCtx = useContext(ErrorContext);
   const stylesCtx = useContext(StylesContext);
 
-  const router = useRouter();
+  const { query } = useRouter() || { query: { text: "" } };
 
-  const recipeId: any = router.query.id;
+  const recipeId = query.id;
+
+  // const router = useRouter();
+
+  // const recipeId: any = router.query.id;
 
   useEffect(() => {
     if (recipeId !== undefined) {
@@ -52,6 +58,7 @@ export default function useFetchSelectedRecipe() {
           source: data.data.recipe.source_url,
           cookingTime: data.data.recipe.cooking_time,
           servings: data.data.recipe.servings,
+          ...(data.data.recipe.key && { key: data.data.recipe.key }),
         });
         stylesCtx.changeSelectedRecipeLoadingState(false);
       };
