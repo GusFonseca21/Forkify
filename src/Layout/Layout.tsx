@@ -9,13 +9,13 @@ import Header from "../components/CentralCard/Header/Header";
 
 const Layout: React.FC<{ children: React.ReactNode }> = (props) => {
   return (
-    <Background>
-      <CentralCard>
+      <Background>
+        <CentralCard>
           <Header />
           <Body>{props.children}</Body>
           <Footer />
-      </CentralCard>
-    </Background>
+        </CentralCard>
+      </Background>
   );
 };
 

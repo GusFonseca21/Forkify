@@ -20,6 +20,7 @@ export default function useUploadNewRecipe() {
       );
       newRecipeObj = {};
       const data = await (await response).json();
+      
     };
     uploadNewRecipe();
   }, [newRecipeObj]);

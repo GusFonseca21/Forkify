@@ -7,6 +7,16 @@ import classes from "./AddRecipeModal.module.css";
 import { AiOutlineCloudUpload, AiOutlineClose } from "react-icons/ai";
 import { uploadNewRecipe } from "../../../../helpers/helpers";
 
+const initialNewRecipeObjValues = {
+  title: "",
+  source_url: "",
+  image_url: "",
+  publisher: "",
+  cooking_time: 0,
+  servings: 0,
+  ingredients: [{}],
+};
+
 const initialRecipeValues = {
   title: "",
   url: "",
@@ -27,7 +37,7 @@ const AddRecipeModal = () => {
   const [uploadStatus, setUploadStatus] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [inputValue, setInputValue] = useState(initialRecipeValues);
-  const [newRecipeObj, setNewRecipeObj] = useState({});
+  const [newRecipeObj, setNewRecipeObj] = useState(initialNewRecipeObjValues);
 
   const stylesCtx = useContext(StylesContext);
 
@@ -41,6 +51,9 @@ const AddRecipeModal = () => {
     setInputValue(initialRecipeValues);
   };
 
+  let recipeId: string;
+  let recipeKey: string;
+
   const formButtonClickHandler = async (
     event: React.FormEvent<HTMLFormElement>
   ) => {
@@ -50,6 +63,9 @@ const AddRecipeModal = () => {
 
     const uploadRecipe = await uploadNewRecipe(newRecipeObj);
 
+    recipeId = uploadRecipe.data.recipe.id;
+    recipeKey = uploadRecipe.data.recipe.key;
+
     if (uploadRecipe.status === "fail") {
       setUploadStatus(false);
       setErrorMessage("Please, fill all the input fields correctly.");
@@ -57,8 +73,24 @@ const AddRecipeModal = () => {
 
     if (uploadRecipe.status === "success") {
       setUploadStatus(true);
-      setNewRecipeObj({});
+      setNewRecipeObj(initialNewRecipeObjValues);
     }
+
+    const bookmarkedRecipesData = JSON.parse(
+      localStorage.getItem("data") || "[]"
+    );
+
+    const newRecipeData = {
+      title: newRecipeObj.title,
+      image: newRecipeObj.image_url,
+      id: recipeId,
+      publisher: newRecipeObj.publisher,
+      key: recipeKey,
+    };
+
+    bookmarkedRecipesData.push(newRecipeData);
+    localStorage.setItem("data", JSON.stringify(bookmarkedRecipesData));
+    stylesCtx.changeBookmarkedRecipeState(true);
   };
 
   const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {

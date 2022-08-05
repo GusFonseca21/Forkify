@@ -25,14 +25,10 @@ export default function useFetchSelectedRecipe() {
 
   const recipeId = query.id;
 
-  // const router = useRouter();
-
-  // const recipeId: any = router.query.id;
-
   useEffect(() => {
     if (recipeId !== undefined) {
+      // stylesCtx.changeSelectedRecipeLoadingState(true);
       errorCtx.changeFetchSelectedRecipeStatus(true);
-      stylesCtx.changeSelectedRecipeLoadingState(true);
       errorCtx.changeFetchRecipesStatus(true);
       const fetchRecipe = async () => {
         const response = await fetch(
@@ -49,6 +45,8 @@ export default function useFetchSelectedRecipe() {
 
         const data = await response.json();
 
+        // stylesCtx.changeSelectedRecipeLoadingState(false);
+
         setRecipeObj({
           title: data.data.recipe.title,
           image: data.data.recipe.image_url,
@@ -60,7 +58,6 @@ export default function useFetchSelectedRecipe() {
           servings: data.data.recipe.servings,
           ...(data.data.recipe.key && { key: data.data.recipe.key }),
         });
-        stylesCtx.changeSelectedRecipeLoadingState(false);
       };
       fetchRecipe();
     }

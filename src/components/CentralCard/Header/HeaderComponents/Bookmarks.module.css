@@ -29,11 +29,14 @@
   z-index: 100;
   visibility: hidden;
   position: absolute;
-  top: 100%;
+  top: 99%;
   right: 0;
   background-color: #dfe4ea;
   max-height: 19rem;
   overflow-y: scroll;
+  border-left: 2px solid rgb(49, 120, 198);
+  border-right: 2px solid rgb(49, 120, 198);
+  border-bottom: 2px solid rgb(49, 120, 198);
 }
 
 .bookmarked-recipes::-webkit-scrollbar {
@@ -64,9 +67,11 @@
   z-index: 1000;
 }
 
-.bookmark-clicked {
-  visibility: visible !important;
-  opacity: 1 !important;
+@media (hover: hover) {
+  .bookmark-clicked {
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
 }
 
 .recipes-list {

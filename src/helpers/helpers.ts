@@ -12,9 +12,5 @@ export async function uploadNewRecipe(newRecipeObj: {}) {
 
   const data = await response.json();
 
-  if (!response.ok) {
-  }
-
-  
   return data;
 }

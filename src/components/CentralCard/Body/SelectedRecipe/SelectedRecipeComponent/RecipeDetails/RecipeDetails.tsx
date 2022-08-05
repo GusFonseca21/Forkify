@@ -7,6 +7,7 @@ import classes from "./RecipeDetails.module.css";
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 import { BsBookmark, BsFillBookmarkFill, BsClock } from "react-icons/bs";
 import { IoPeopleOutline } from "react-icons/io5";
+import { FetchRecipesContext } from "../../../../../store/fetch-recipes-context";
 const RecipeDetails: React.FC<{
   cookingTime: number;
   servings: number;
@@ -26,13 +27,13 @@ const RecipeDetails: React.FC<{
     localStorage.getItem("data") || "[]"
   );
 
-  const isRecipeBookmarkedFound: boolean = bookmarkedRecipesData.find(
+  const isRecipeBookmarked: boolean = bookmarkedRecipesData.find(
     (recipe: any) => recipe.id === props.id
   );
 
   const isBookmarked = stylesCtx.state.bookmarkRecipeState;
 
-  if (isRecipeBookmarkedFound !== undefined) {
+  if (isRecipeBookmarked !== undefined) {
     stylesCtx.changeBookmarkedRecipeState(true);
   } else {
     stylesCtx.changeBookmarkedRecipeState(false);
@@ -55,11 +56,14 @@ const RecipeDetails: React.FC<{
     }
 
     if (!isBookmarked) {
-      if (props.id) bookmarkedRecipesData.push(recipe);
-      localStorage.setItem("data", JSON.stringify(bookmarkedRecipesData));
-      stylesCtx.changeBookmarkedRecipeState(true);
+      if (props.id) {
+        bookmarkedRecipesData.push(recipe);
+        localStorage.setItem("data", JSON.stringify(bookmarkedRecipesData));
+        stylesCtx.changeBookmarkedRecipeState(true);
+      }
     }
   };
+
   const addServings = () => {
     if (props.servings < 20) {
       props.changeServings({

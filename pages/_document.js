@@ -15,19 +15,6 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
           />
-          <meta
-            name="keywords"
-            content="Forkify, TypeScript, CSS, Next.js, Nextjs"
-          />
-          <meta
-            name="title"
-            content="Forkify | Search over 1.000 recipes online!"
-          />
-          <meta
-            name="description"
-            content="Forkify is a website where you can search and add over 1.000 recipes"
-          />
-          <meta name="author" content="Gustavo Fonseca de Araújo" />
         </Head>
         <body>
           <Main />

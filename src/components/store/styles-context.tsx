@@ -69,7 +69,6 @@ const StylesContextProvider: React.FC<{ children: React.ReactNode }> = (
         setSearchBarButton(false);
       }, 1 * 1000);
     }
-
     if (element === "addRecipeHeader") {
       !addRecipeHeader ? setAddRecipeHeader(true) : setAddRecipeHeader(false);
     }

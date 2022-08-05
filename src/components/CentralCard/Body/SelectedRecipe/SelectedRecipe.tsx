@@ -16,8 +16,11 @@ import { BsEmojiSmile } from "react-icons/bs";
 import { BiUserCircle } from "react-icons/bi";
 import LinearProgress from "@mui/material/LinearProgress";
 import HowToCookIt from "./SelectedRecipeComponent/HowToCookIt/HowToCookIt";
+import Head from "next/head";
 
 const SelectedRecipe = () => {
+  let pageTitle: string = "Forkify | Search over 1.000 recipes!";
+
   const [servings, setServings] = useState({ newServings: 0, oldServings: 0 });
   const [ingredients, setIngredients] = useState([
     {
@@ -33,10 +36,6 @@ const SelectedRecipe = () => {
   const { query } = useRouter() || { query: { text: "" } };
 
   const recipeId = query.id;
-
-  // const router = useRouter();
-
-  // const recipeId = router.query.id;
 
   const foundRecipesControllerState =
     stylesCtx.state.foundRecipesControllerState;
@@ -54,6 +53,10 @@ const SelectedRecipe = () => {
   };
 
   const recipeData = useFetchSelectedRecipe();
+
+  if (recipeId !== undefined) {
+    pageTitle = `Forkify | ${recipeData.title}`;
+  }
 
   // @ts-ignore
   const isRecipeFromUser = recipeData.key !== undefined;
@@ -78,75 +81,80 @@ const SelectedRecipe = () => {
   }, [recipeData.servings, recipeData.ingredients]);
 
   return (
-    <section
-      className={`${classes.body} ${
-        foundRecipesControllerState &&
-        !fetchFoundRecipesHasError &&
-        classes["found-recipes-open"]
-      }`}
-      onClick={closeFoundRecipes}
-    >
-      {fetchSelectedRecipesHasError && (
-        <span
-          className={`${classes["fetch-selected-recipe-error-message"]} ${classes["error-message"]}`}
-        >
-          {fetchSelectedRecipesErrorMessage}
-        </span>
-      )}
-      {fetchFoundRecipesHasError && (
-        <span
-          className={`${classes["fetch-found-recipes-error-message"]} ${classes["error-message"]}`}
-        >
-          {fetchFoundRecipesErrorMessage}
-        </span>
-      )}
-      {recipeId === undefined && (
-        <span className={classes["starting-message"]}>
-          <BsEmojiSmile className={classes["starting-message-emoji"]} />
-          Start by searching for a recipe or an ingredient. Have fun!
-        </span>
-      )}
-      {isSelectedRecipeLoading && !fetchSelectedRecipesHasError && (
-        <LinearProgress className={classes["loading-bar"]} />
-      )}
+    <>
+      <Head>
+        <title>{pageTitle}</title>
+      </Head>
+      <section
+        className={`${classes.body} ${
+          foundRecipesControllerState &&
+          !fetchFoundRecipesHasError &&
+          classes["found-recipes-open"]
+        }`}
+        onClick={closeFoundRecipes}
+      >
+        {fetchSelectedRecipesHasError && (
+          <span
+            className={`${classes["fetch-selected-recipe-error-message"]} ${classes["error-message"]}`}
+          >
+            {fetchSelectedRecipesErrorMessage}
+          </span>
+        )}
+        {fetchFoundRecipesHasError && (
+          <span
+            className={`${classes["fetch-found-recipes-error-message"]} ${classes["error-message"]}`}
+          >
+            {fetchFoundRecipesErrorMessage}
+          </span>
+        )}
+        {recipeId === undefined && (
+          <span className={classes["starting-message"]}>
+            <BsEmojiSmile className={classes["starting-message-emoji"]} />
+            Start by searching for a recipe or an ingredient. Have fun!
+          </span>
+        )}
+        {isSelectedRecipeLoading && !fetchSelectedRecipesHasError && (
+          <LinearProgress className={classes["loading-bar"]} />
+        )}
 
-      {recipeData.image !== "" && recipeId !== undefined && (
-        <>
-          {isRecipeFromUser && (
-            <BiUserCircle className={classes["user-recipe-mark"]} />
-          )}
-          <ImageAndTitle image={recipeData.image} title={recipeData.title} />
-          <RecipeDetails
-            cookingTime={recipeData.cookingTime}
-            servings={servings.newServings}
-            image={recipeData.image}
-            publisher={recipeData.publisher}
-            title={recipeData.title}
-            id={recipeData.id}
-            // @ts-ignore
-            recipeKey={recipeData.key}
-            changeServings={(servings: {
-              newServings: number;
-              oldServings: number;
-            }) =>
-              setServings({
-                newServings: servings.newServings,
-                oldServings: servings.oldServings,
-              })
-            }
-          />
-          <RecipeIngredients
-            ingredients={ingredients}
-            id={recipeData.id}
-            source={recipeData.source}
-          />
-          <HowToCookIt
-            source={recipeData.source}
-            recipeKey={isRecipeFromUser}
-          />
-        </>
-      )}
-    </section>
+        {recipeData.image !== "" && recipeId !== undefined && (
+          <>
+            {isRecipeFromUser && (
+              <BiUserCircle className={classes["user-recipe-mark"]} />
+            )}
+            <ImageAndTitle image={recipeData.image} title={recipeData.title} />
+            <RecipeDetails
+              cookingTime={recipeData.cookingTime}
+              servings={servings.newServings}
+              image={recipeData.image}
+              publisher={recipeData.publisher}
+              title={recipeData.title}
+              id={recipeData.id}
+              // @ts-ignore
+              recipeKey={recipeData.key}
+              changeServings={(servings: {
+                newServings: number;
+                oldServings: number;
+              }) =>
+                setServings({
+                  newServings: servings.newServings,
+                  oldServings: servings.oldServings,
+                })
+              }
+            />
+            <RecipeIngredients
+              ingredients={ingredients}
+              id={recipeData.id}
+              source={recipeData.source}
+            />
+            <HowToCookIt
+              source={recipeData.source}
+              recipeKey={isRecipeFromUser}
+            />
+          </>
+        )}
+      </section>
+    </>
   );
 };
 

@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 
 type FetchRecipesObj = {
-  getInputText: (text: string) => void;
   inputText: string;
-  getId: (id: string) => void;
   id: string;
-  getNewRecipe: (recipeData: {}) => void;
   newRecipe: {};
+  getInputText: (text: string) => void;
+  getId: (id: string) => void;
+  getNewRecipe: (recipeData: {}) => void;
 };
 
 export const FetchRecipesContext = React.createContext<FetchRecipesObj>({
-  getInputText: () => {},
   inputText: "",
-  getId: () => {},
   id: "",
-  getNewRecipe: () => {},
   newRecipe: {},
+  getInputText: () => {},
+  getId: () => {},
+  getNewRecipe: () => {},
 });
 
 const FetchRecipesContextProvider: React.FC<{ children: React.ReactNode }> = (
@@ -38,12 +38,12 @@ const FetchRecipesContextProvider: React.FC<{ children: React.ReactNode }> = (
   };
 
   const contextValue: FetchRecipesObj = {
-    getInputText,
     inputText: inputtedText,
-    getId,
     id: selectedId,
-    getNewRecipe,
     newRecipe,
+    getInputText,
+    getId,
+    getNewRecipe,
   };
 
   return (
