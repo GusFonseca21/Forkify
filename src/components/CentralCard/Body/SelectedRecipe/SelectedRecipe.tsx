@@ -40,15 +40,16 @@ const SelectedRecipe = () => {
   const foundRecipesControllerState =
     stylesCtx.state.foundRecipesControllerState;
   const isSelectedRecipeLoading = stylesCtx.state.selectedRecipeLoadingState;
-  const fetchSelectedRecipesHasError = errorCtx.fetchSelectedRecipeStatus;
-  const fetchFoundRecipesHasError = errorCtx.fetchRecipesStatus;
+  const fetchSelectedRecipesHasError = errorCtx.states.fetchSelectedRecipeStatus;
+  const fetchFoundRecipesHasError = errorCtx.states.fetchRecipesStatus;
   const fetchSelectedRecipesErrorMessage =
-    errorCtx.fetchSelectedRecipeErrorMessage;
-  const fetchFoundRecipesErrorMessage = errorCtx.fetchRecipesErrorMessage;
+    errorCtx.states.fetchSelectedRecipeErrorMessage;
+  const fetchFoundRecipesErrorMessage = errorCtx.states.fetchRecipesErrorMessage;
 
   const closeFoundRecipes = () => {
+    console.log("testé")
     if (foundRecipesControllerState) {
-      stylesCtx.changeFoundRecipesControllerState(false);
+      stylesCtx.functions.changeFoundRecipesControllerState(false);
     }
   };
 

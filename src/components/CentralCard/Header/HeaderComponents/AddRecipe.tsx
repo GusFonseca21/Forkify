@@ -10,7 +10,7 @@ const AddRecipe = () => {
   const stylesCtx = useContext(StylesContext);
 
   const addRecipeHandler = () => {
-    stylesCtx.changeState("addRecipeHeader");
+    stylesCtx.functions.changeAddRecipeHeaderState(true);
   };
   return (
     <button className={classes["add-recipe-button"]} onClick={addRecipeHandler}>

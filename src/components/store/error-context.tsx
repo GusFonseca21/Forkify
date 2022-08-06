@@ -1,25 +1,34 @@
 import React, { useState } from "react";
 
 type ErrorObj = {
-  getFetchRecipesErrorMessage: (message: string) => void;
-  getFetchSelectedRecipeErrorMessage: (message: string) => void;
-  changeFetchRecipesStatus: (status: boolean) => void;
-  changeFetchSelectedRecipeStatus: (status: boolean) => void;
-  fetchRecipesErrorMessage: string;
-  fetchSelectedRecipeErrorMessage: string;
-  fetchRecipesStatus: boolean;
-  fetchSelectedRecipeStatus: boolean;
+  functions: {
+    getFetchRecipesErrorMessage: (message: string) => void;
+    getFetchSelectedRecipeErrorMessage: (message: string) => void;
+    changeFetchRecipesStatus: (status: boolean) => void;
+    changeFetchSelectedRecipeStatus: (status: boolean) => void;
+  };
+  states: {
+    fetchRecipesErrorMessage: string;
+    fetchSelectedRecipeErrorMessage: string;
+    fetchRecipesStatus: boolean;
+    fetchSelectedRecipeStatus: boolean;
+  };
 };
 
 export const ErrorContext = React.createContext<ErrorObj>({
-  getFetchRecipesErrorMessage: () => {},
-  getFetchSelectedRecipeErrorMessage: () => {},
-  changeFetchRecipesStatus: () => {},
-  changeFetchSelectedRecipeStatus: () => {},
-  fetchRecipesErrorMessage: "",
-  fetchSelectedRecipeErrorMessage: "",
-  fetchRecipesStatus: true,
-  fetchSelectedRecipeStatus: true,
+  functions: {
+    getFetchRecipesErrorMessage: () => {},
+    getFetchSelectedRecipeErrorMessage: () => {},
+    changeFetchRecipesStatus: () => {},
+    changeFetchSelectedRecipeStatus: () => {},
+  },
+
+  states: {
+    fetchRecipesErrorMessage: "",
+    fetchSelectedRecipeErrorMessage: "",
+    fetchRecipesStatus: true,
+    fetchSelectedRecipeStatus: true,
+  },
 });
 
 const ErrorContextProvider: React.FC<{ children: React.ReactNode }> = (
@@ -48,14 +57,18 @@ const ErrorContextProvider: React.FC<{ children: React.ReactNode }> = (
   };
 
   const contextValue: ErrorObj = {
-    getFetchRecipesErrorMessage,
-    getFetchSelectedRecipeErrorMessage,
-    changeFetchRecipesStatus,
-    changeFetchSelectedRecipeStatus,
-    fetchRecipesErrorMessage: fetchRecipesError,
-    fetchSelectedRecipeErrorMessage: fetchSelectedRecipeError,
-    fetchRecipesStatus: fetchRecipesStatus,
-    fetchSelectedRecipeStatus: fetchSelectedRecipeStatus,
+    functions: {
+      getFetchRecipesErrorMessage,
+      getFetchSelectedRecipeErrorMessage,
+      changeFetchRecipesStatus,
+      changeFetchSelectedRecipeStatus,
+    },
+    states: {
+      fetchRecipesErrorMessage: fetchRecipesError,
+      fetchSelectedRecipeErrorMessage: fetchSelectedRecipeError,
+      fetchRecipesStatus: fetchRecipesStatus,
+      fetchSelectedRecipeStatus: fetchSelectedRecipeStatus,
+    },
   };
   return (
     <ErrorContext.Provider value={contextValue}>

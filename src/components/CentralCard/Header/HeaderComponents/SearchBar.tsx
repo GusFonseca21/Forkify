@@ -13,18 +13,17 @@ const SearchBar = () => {
 
   const searchBarTextInputRef = useRef<HTMLInputElement>(null);
 
-
   const searchButtonClickHandler = (event: React.FormEvent) => {
     event.preventDefault();
 
     const enteredText = searchBarTextInputRef.current!.value;
 
-    stylesCtx.changeState("searchButton");
+    stylesCtx.functions.animateSearchButton();
 
     if (enteredText.trim().length === 0) {
       return;
     }
-    fetchCtx.getInputText(enteredText);
+    fetchCtx.sendSearchBarInputText(enteredText);
   };
 
   return (

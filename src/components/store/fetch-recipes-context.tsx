@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 
 type FetchRecipesObj = {
-  inputText: string;
+  getSearchBarInputText: string;
   id: string;
-  newRecipe: {};
-  getInputText: (text: string) => void;
-  getId: (id: string) => void;
+  getNewRecipeObj: {};
+  sendSearchBarInputText: (text: string) => void;
+  sendRecipeId: (id: string) => void;
   getNewRecipe: (recipeData: {}) => void;
 };
 
 export const FetchRecipesContext = React.createContext<FetchRecipesObj>({
-  inputText: "",
+  getSearchBarInputText: "",
   id: "",
-  newRecipe: {},
-  getInputText: () => {},
-  getId: () => {},
+  getNewRecipeObj: {},
+  sendSearchBarInputText: () => {},
+  sendRecipeId: () => {},
   getNewRecipe: () => {},
 });
 
@@ -23,26 +23,26 @@ const FetchRecipesContextProvider: React.FC<{ children: React.ReactNode }> = (
 ) => {
   const [inputtedText, setInputText] = useState("");
   const [selectedId, setSelectedId] = useState("");
-  const [newRecipe, setNewRecipe] = useState({});
+  const [newRecipeObj, setNewRecipeObj] = useState({});
 
-  const getInputText = (search: string) => {
+  const sendSearchBarInputText = (search: string) => {
     setInputText(search);
   };
 
-  const getId = (id: string) => {
+  const sendRecipeId = (id: string) => {
     setSelectedId(id);
   };
 
   const getNewRecipe = (recipeData: {}) => {
-    setNewRecipe(recipeData);
+    setNewRecipeObj(recipeData);
   };
 
   const contextValue: FetchRecipesObj = {
-    inputText: inputtedText,
+    getSearchBarInputText: inputtedText,
     id: selectedId,
-    newRecipe,
-    getInputText,
-    getId,
+    getNewRecipeObj: newRecipeObj,
+    sendSearchBarInputText,
+    sendRecipeId,
     getNewRecipe,
   };
 

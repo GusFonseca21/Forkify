@@ -22,10 +22,10 @@ const Recipe: React.FC<{
   const router = useRouter();
 
   const FetchSelectedRecipe = () => {
-    fetchCtx.getId(props.id);
+    fetchCtx.sendRecipeId(props.id);
     router.push("/recipe/" + props.id);
-    stylesCtx.changeFoundRecipesControllerState(false);
-    stylesCtx.changeBookmarksHeaderState(false);
+    stylesCtx.functions.changeFoundRecipesControllerState(false);
+    stylesCtx.functions.changeBookmarksHeaderState(false);
   };
 
   const defaultImage =

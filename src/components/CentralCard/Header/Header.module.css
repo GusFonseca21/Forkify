@@ -16,7 +16,7 @@
   display: none;
 }
 
-.logo {
+.logo, .logo-simples {
   height: 55%;
   margin-right: 0.5rem;
   margin-left: 0.5rem;
@@ -24,11 +24,7 @@
 }
 
 .logo-simples {
-  height: 55%;
-  margin-right: 0.5rem;
-  margin-left: 0.5rem;
   display: none;
-  cursor: pointer;
 }
 
 .header-buttons {

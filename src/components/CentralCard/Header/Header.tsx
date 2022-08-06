@@ -1,6 +1,8 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 
 import Link from "next/link";
+
+import logoSimples from "../../../../public/logo-simples.png";
 
 import { StylesContext } from "../../store/styles-context";
 
@@ -27,7 +29,7 @@ const Header = () => {
   const isFoundRecipesLoading = stylesCtx.state.foundRecipesLoadingState;
   const closeFoundRecipes = () => {
     if (foundRecipesControllerState) {
-      stylesCtx.changeFoundRecipesControllerState(false);
+      stylesCtx.functions.changeFoundRecipesControllerState(false);
     }
   };
 
@@ -38,7 +40,7 @@ const Header = () => {
       </Link>
       <Link href="/">
         <img
-          src="logo-simples.png"
+          src="logo-small.png"
           className={classes["logo-simples"]}
           alt="Forkify logo"
         />

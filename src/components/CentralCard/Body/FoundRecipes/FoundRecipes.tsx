@@ -21,17 +21,17 @@ const FoundRecipes = () => {
   const fetchedRecipes = useFetchRecipes();
 
   const isLoading = stylesCtx.state.foundRecipesLoadingState;
-  const hasError = errorCtx.fetchRecipesStatus;
-  const errorMessage = errorCtx.fetchRecipesErrorMessage;
-  const hasEnteredText = fetchCtx.inputText;
+  const hasError = errorCtx.states.fetchRecipesStatus;
+  const errorMessage = errorCtx.states.fetchRecipesErrorMessage;
+  const enteredInpuText = fetchCtx.getSearchBarInputText;
   const isFoundRecipesControllerOpen =
     stylesCtx.state.foundRecipesControllerState;
 
   const hideShowFoundRecipesHandler = () => {
     if (isFoundRecipesControllerOpen)
-      stylesCtx.changeFoundRecipesControllerState(false);
+      stylesCtx.functions.changeFoundRecipesControllerState(false);
     if (!isFoundRecipesControllerOpen)
-      stylesCtx.changeFoundRecipesControllerState(true);
+      stylesCtx.functions.changeFoundRecipesControllerState(true);
   };
 
   return (
@@ -47,7 +47,7 @@ const FoundRecipes = () => {
       )}
       <div
         className={`${classes["found-recipe-controller-buttons"]} ${
-          hasEnteredText !== "" || (!hasError && classes["no-recipes-searched"])
+          enteredInpuText !== "" || (!hasError && classes["no-recipes-searched"])
         }`}
       >
         {!isFoundRecipesControllerOpen ? (

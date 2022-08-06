@@ -34,9 +34,9 @@ const RecipeDetails: React.FC<{
   const isBookmarked = stylesCtx.state.bookmarkRecipeState;
 
   if (isRecipeBookmarked !== undefined) {
-    stylesCtx.changeBookmarkedRecipeState(true);
+    stylesCtx.functions.changeBookmarkedRecipeState(true);
   } else {
-    stylesCtx.changeBookmarkedRecipeState(false);
+    stylesCtx.functions.changeBookmarkedRecipeState(false);
   }
   const bookmarkButtonHandler = () => {
     const recipe = {
@@ -52,14 +52,14 @@ const RecipeDetails: React.FC<{
         (recipe: any) => recipe.id !== props.id
       );
       localStorage.setItem("data", JSON.stringify(dataWithRemovedRecipe));
-      stylesCtx.changeBookmarkedRecipeState(false);
+      stylesCtx.functions.changeBookmarkedRecipeState(false);
     }
 
     if (!isBookmarked) {
       if (props.id) {
         bookmarkedRecipesData.push(recipe);
         localStorage.setItem("data", JSON.stringify(bookmarkedRecipesData));
-        stylesCtx.changeBookmarkedRecipeState(true);
+        stylesCtx.functions.changeBookmarkedRecipeState(true);
       }
     }
   };

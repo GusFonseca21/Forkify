@@ -6,14 +6,8 @@ const nextConfig = {
 
 module.exports = nextConfig;
 
-// module.exports = {
-//   async redirects() {
-//     return [
-//       {
-//         source: "/recipe",
-//         destination: "/",
-//         permanent: true,
-//       },
-//     ];
-//   },
-// };
+module.exports = {
+  images: {
+    domains: ["forkify-api.herokuapp.com"],
+  },
+};

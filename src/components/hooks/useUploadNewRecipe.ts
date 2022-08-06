@@ -4,7 +4,7 @@ import { FetchRecipesContext } from "../store/fetch-recipes-context";
 
 export default function useUploadNewRecipe() {
   const fetchCtx = useContext(FetchRecipesContext);
-  let newRecipeObj = fetchCtx.newRecipe;
+  let newRecipeObj = fetchCtx.getNewRecipeObj;
 
   useEffect(() => {
     const uploadNewRecipe = async () => {

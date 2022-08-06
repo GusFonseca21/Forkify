@@ -12,7 +12,7 @@ const HowToCookIt: React.FC<{ source: string; recipeKey: boolean }> = (
   const stylesCtx = useContext(StylesContext);
 
   const deleteRecipeHandler = () => {
-    stylesCtx.changeDeleteRecipeButton(true);
+    stylesCtx.functions.changeDeleteRecipeButton(true);
   };
 
 

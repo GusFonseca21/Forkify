@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import classes from "./ImageAndTitle.module.css";
 
 const ImageAndTitle: React.FC<{ image: string; title: string }> = (props) => {

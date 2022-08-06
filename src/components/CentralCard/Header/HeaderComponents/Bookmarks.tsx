@@ -22,7 +22,7 @@ const Bookmarks = () => {
   }, [recipeDetailsBookmarkClicked]);
 
   const bookmarkClickHandler = () => {
-    stylesCtx.changeBookmarksHeaderState(!bookmarksState);
+    stylesCtx.functions.changeBookmarksHeaderState(!bookmarksState);
   };
   return (
     <>

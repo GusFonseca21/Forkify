@@ -45,7 +45,7 @@ const AddRecipeModal = () => {
   const uploadButtonState = stylesCtx.state.uploadRecipeButtonState;
 
   const closeModalHandler = () => {
-    stylesCtx.changeState("addRecipeHeader");
+    stylesCtx.functions.changeAddRecipeHeaderState(false);
     setUploadStatus(false);
     setErrorMessage("");
     setInputValue(initialRecipeValues);
@@ -59,22 +59,23 @@ const AddRecipeModal = () => {
   ) => {
     event.preventDefault();
 
-    stylesCtx.clickAnimationUploadButton();
+    stylesCtx.functions.animateUploadButton();
 
     const uploadRecipe = await uploadNewRecipe(newRecipeObj);
-
-    recipeId = uploadRecipe.data.recipe.id;
-    recipeKey = uploadRecipe.data.recipe.key;
 
     if (uploadRecipe.status === "fail") {
       setUploadStatus(false);
       setErrorMessage("Please, fill all the input fields correctly.");
+      return;
     }
 
     if (uploadRecipe.status === "success") {
       setUploadStatus(true);
       setNewRecipeObj(initialNewRecipeObjValues);
     }
+
+    recipeId = uploadRecipe.data.recipe.id;
+    recipeKey = uploadRecipe.data.recipe.key;
 
     const bookmarkedRecipesData = JSON.parse(
       localStorage.getItem("data") || "[]"
@@ -90,7 +91,7 @@ const AddRecipeModal = () => {
 
     bookmarkedRecipesData.push(newRecipeData);
     localStorage.setItem("data", JSON.stringify(bookmarkedRecipesData));
-    stylesCtx.changeBookmarkedRecipeState(true);
+    stylesCtx.functions.changeBookmarkedRecipeState(true);
   };
 
   const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -2,77 +2,83 @@ import React, { useState } from "react";
 
 type StylesContextObj = {
   state: {
-    foundRecipesControllerState: boolean;
-    bookmarkRecipeState: boolean;
-    searchButtonState: boolean;
-    bookmarksHeaderState: boolean;
     addRecipeHeaderState: boolean;
+    bookmarksHeaderState: boolean;
+    bookmarkRecipeState: boolean;
+    confirmDeleteRecipeState: boolean;
+    deleteRecipeButtonState: boolean;
+    foundRecipesControllerState: boolean;
     foundRecipesLoadingState: boolean;
+    searchButtonState: boolean;
     selectedRecipeLoadingState: boolean;
     uploadRecipeButtonState: boolean;
-    deleteRecipeButtonState: boolean;
-    wasRecipeDeletedState: boolean;
   };
-  changeState: (element: string) => void;
-  changeBookmarksHeaderState: (value: boolean) => void;
-  changeBookmarkedRecipeState: (value: boolean) => void;
-  changeFoundRecipesLoadingState: (value: boolean) => void;
-  changeSelectedRecipeLoadingState: (value: boolean) => void;
-  changeFoundRecipesControllerState: (value: boolean) => void;
-  clickAnimationUploadButton: () => void;
-  changeDeleteRecipeButton: (value: boolean) => void;
-  wasRecipeDeleted: () => void;
+  functions: {
+    animateUploadButton: () => void;
+    animateSearchButton: () => void;
+    changeAddRecipeHeaderState: (value: boolean) => void;
+    changeBookmarksHeaderState: (value: boolean) => void;
+    changeBookmarkedRecipeState: (value: boolean) => void;
+    changeDeleteRecipeButton: (value: boolean) => void;
+    changeFoundRecipesControllerState: (value: boolean) => void;
+    changeFoundRecipesLoadingState: (value: boolean) => void;
+    changeSelectedRecipeLoadingState: (value: boolean) => void;
+    showConfirmDeleteRecipe: () => void;
+  };
 };
 
 export const StylesContext = React.createContext<StylesContextObj>({
   state: {
-    foundRecipesControllerState: false,
-    bookmarkRecipeState: false,
-    searchButtonState: false,
-    bookmarksHeaderState: false,
     addRecipeHeaderState: false,
+    bookmarksHeaderState: false,
+    bookmarkRecipeState: false,
+    confirmDeleteRecipeState: false,
+    deleteRecipeButtonState: false,
+    foundRecipesControllerState: false,
     foundRecipesLoadingState: false,
+    searchButtonState: false,
     selectedRecipeLoadingState: false,
     uploadRecipeButtonState: false,
-    deleteRecipeButtonState: false,
-    wasRecipeDeletedState: false,
   },
-  changeState: () => {},
-  changeBookmarksHeaderState: () => {},
-  changeBookmarkedRecipeState: () => {},
-  changeFoundRecipesLoadingState: () => {},
-  changeSelectedRecipeLoadingState: () => {},
-  changeFoundRecipesControllerState: () => {},
-  clickAnimationUploadButton: () => {},
-  changeDeleteRecipeButton: () => {},
-  wasRecipeDeleted: () => {},
+  functions: {
+    animateSearchButton: () => {},
+    animateUploadButton: () => {},
+    changeAddRecipeHeaderState: () => {},
+    changeBookmarksHeaderState: () => {},
+    changeBookmarkedRecipeState: () => {},
+    changeDeleteRecipeButton: () => {},
+    changeFoundRecipesLoadingState: () => {},
+    changeSelectedRecipeLoadingState: () => {},
+    changeFoundRecipesControllerState: () => {},
+    showConfirmDeleteRecipe: () => {},
+  },
 });
 
 const StylesContextProvider: React.FC<{ children: React.ReactNode }> = (
   props
 ) => {
-  const [foundRecipesController, setFoundRecipesController] = useState(false);
-  const [bookmarkRecipeButton, setBookmarRecipe] = useState(false);
-  const [searchBarButton, setSearchBarButton] = useState(false);
-  const [bookmarksHeader, setBookmarksHeader] = useState(false);
   const [addRecipeHeader, setAddRecipeHeader] = useState(false);
-  const [isFoundRecipesLoading, setIsFoundRecipesLoading] = useState(false);
-  const [isSelectedRecipeLoading, setIsSelectedRecipeLoading] = useState(false);
-  const [uploadedRecipeButton, setUploadedRecipeButton] = useState(false);
+  const [bookmarksHeader, setBookmarksHeader] = useState(false);
+  const [bookmarkRecipeButton, setBookmarRecipe] = useState(false);
   const [deleteButton, setDeleteButton] = useState(false);
   const [deletedRecipeState, setDeletedRecipeState] = useState(false);
+  const [foundRecipesController, setFoundRecipesController] = useState(false);
+  const [isFoundRecipesLoading, setIsFoundRecipesLoading] = useState(false);
+  const [isSelectedRecipeLoading, setIsSelectedRecipeLoading] = useState(false);
+  const [searchBarButton, setSearchBarButton] = useState(false);
+  const [uploadedRecipeButton, setUploadedRecipeButton] = useState(false);
 
-  const changeState = (element: string) => {
-    if (element === "searchButton") {
-      setSearchBarButton(true);
-      setTimeout(() => {
-        setSearchBarButton(false);
-      }, 1 * 1000);
-    }
-    if (element === "addRecipeHeader") {
-      !addRecipeHeader ? setAddRecipeHeader(true) : setAddRecipeHeader(false);
-    }
+  const animateSearchButton = () => {
+    setSearchBarButton(true);
+    setTimeout(() => {
+      setSearchBarButton(false);
+    }, 1 * 1000);
   };
+
+  const changeAddRecipeHeaderState = (value: boolean) => {
+    setAddRecipeHeader(value);
+  };
+
   const changeBookmarksHeaderState = (value: boolean) => {
     setBookmarksHeader(value);
   };
@@ -97,14 +103,14 @@ const StylesContextProvider: React.FC<{ children: React.ReactNode }> = (
     setIsSelectedRecipeLoading(value);
   };
 
-  const clickAnimationUploadButton = () => {
+  const animateUploadButton = () => {
     setUploadedRecipeButton(true);
     setTimeout(() => {
       setUploadedRecipeButton(false);
     }, 1 * 1000);
   };
 
-  const wasRecipeDeleted = () => {
+  const showConfirmDeleteRecipe = () => {
     setDeletedRecipeState(true);
     setTimeout(() => {
       setDeletedRecipeState(false);
@@ -113,26 +119,29 @@ const StylesContextProvider: React.FC<{ children: React.ReactNode }> = (
 
   const contextValue: StylesContextObj = {
     state: {
-      foundRecipesControllerState: foundRecipesController,
-      bookmarkRecipeState: bookmarkRecipeButton,
-      searchButtonState: searchBarButton,
-      bookmarksHeaderState: bookmarksHeader,
       addRecipeHeaderState: addRecipeHeader,
+      bookmarksHeaderState: bookmarksHeader,
+      bookmarkRecipeState: bookmarkRecipeButton,
+      deleteRecipeButtonState: deleteButton,
+      foundRecipesControllerState: foundRecipesController,
       foundRecipesLoadingState: isFoundRecipesLoading,
+      searchButtonState: searchBarButton,
       selectedRecipeLoadingState: isSelectedRecipeLoading,
       uploadRecipeButtonState: uploadedRecipeButton,
-      deleteRecipeButtonState: deleteButton,
-      wasRecipeDeletedState: deletedRecipeState,
+      confirmDeleteRecipeState: deletedRecipeState,
     },
-    changeState,
-    changeBookmarksHeaderState,
-    changeBookmarkedRecipeState,
-    changeFoundRecipesLoadingState,
-    changeSelectedRecipeLoadingState,
-    changeFoundRecipesControllerState,
-    clickAnimationUploadButton,
-    changeDeleteRecipeButton,
-    wasRecipeDeleted,
+    functions: {
+      changeAddRecipeHeaderState,
+      changeBookmarksHeaderState,
+      changeBookmarkedRecipeState,
+      changeDeleteRecipeButton,
+      changeFoundRecipesLoadingState,
+      changeFoundRecipesControllerState,
+      changeSelectedRecipeLoadingState,
+      animateSearchButton,
+      animateUploadButton,
+      showConfirmDeleteRecipe,
+    },
   };
 
   return (

@@ -11,7 +11,6 @@ import { BsXCircle } from "react-icons/bs";
 import { FetchRecipesContext } from "../../../store/fetch-recipes-context";
 
 const DeleteRecipeModal = () => {
-  // const router = useRouter();
 
   const { query, replace } = useRouter() || { query: { text: "" } };
 
@@ -23,16 +22,16 @@ const DeleteRecipeModal = () => {
   const wasDeleteButtonClicked = stylesCtx.state.deleteRecipeButtonState;
 
   const closeModalHandler = () => {
-    stylesCtx.changeDeleteRecipeButton(false);
+    stylesCtx.functions.changeDeleteRecipeButton(false);
   };
 
   const declineButtonHandler = () => {
-    stylesCtx.changeDeleteRecipeButton(false);
+    stylesCtx.functions.changeDeleteRecipeButton(false);
   };
 
   const accpetButtonHandler = async () => {
     replace("/");
-    const response = await fetch(
+    await fetch(
       `https://forkify-api.herokuapp.com/api/v2/recipes/${recipeId}?key=4871af3e-9c8a-4b50-b116-b7298ada9115`,
       {
         method: "DELETE",
@@ -41,7 +40,7 @@ const DeleteRecipeModal = () => {
         },
       }
     );
-    stylesCtx.changeDeleteRecipeButton(false);
+    stylesCtx.functions.changeDeleteRecipeButton(false);
 
     if (typeof window !== "undefined") {
       const bookmarkedRecipesData = JSON.parse(
@@ -53,12 +52,12 @@ const DeleteRecipeModal = () => {
       );
 
       localStorage.setItem("data", JSON.stringify(dataWithRemovedRecipe));
-      stylesCtx.changeBookmarkedRecipeState(false);
+      stylesCtx.functions.changeBookmarkedRecipeState(false);
     }
-    const inputText = fetchCtx.inputText;
-    fetchCtx.getInputText(inputText)
+    const inputText = fetchCtx.getSearchBarInputText;
+    fetchCtx.sendSearchBarInputText(inputText)
 
-    stylesCtx.wasRecipeDeleted();
+    stylesCtx.functions.showConfirmDeleteRecipe();
   };
 
   return (

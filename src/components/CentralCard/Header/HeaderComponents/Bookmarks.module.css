@@ -34,9 +34,6 @@
   background-color: #dfe4ea;
   max-height: 19rem;
   overflow-y: scroll;
-  border-left: 2px solid rgb(49, 120, 198);
-  border-right: 2px solid rgb(49, 120, 198);
-  border-bottom: 2px solid rgb(49, 120, 198);
 }
 
 .bookmarked-recipes::-webkit-scrollbar {

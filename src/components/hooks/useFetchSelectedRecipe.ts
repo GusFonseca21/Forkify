@@ -26,26 +26,25 @@ export default function useFetchSelectedRecipe() {
   const recipeId = query.id;
 
   useEffect(() => {
+    stylesCtx.functions.changeSelectedRecipeLoadingState(true);
+    console.log(stylesCtx.state.selectedRecipeLoadingState);
     if (recipeId !== undefined) {
-      // stylesCtx.changeSelectedRecipeLoadingState(true);
-      errorCtx.changeFetchSelectedRecipeStatus(true);
-      errorCtx.changeFetchRecipesStatus(true);
+      errorCtx.functions.changeFetchSelectedRecipeStatus(true);
+      errorCtx.functions.changeFetchRecipesStatus(true);
       const fetchRecipe = async () => {
         const response = await fetch(
           `https://forkify-api.herokuapp.com/api/v2/recipes/${recipeId}`
         );
 
         if (!response.ok) {
-          errorCtx.getFetchSelectedRecipeErrorMessage(
+          errorCtx.functions.getFetchSelectedRecipeErrorMessage(
             `Something went wrong! Error: ${response.statusText}. Status Code: ${response.status}`
           );
-          errorCtx.changeFetchSelectedRecipeStatus(response.ok);
+          errorCtx.functions.changeFetchSelectedRecipeStatus(response.ok);
           return;
         }
 
         const data = await response.json();
-
-        // stylesCtx.changeSelectedRecipeLoadingState(false);
 
         setRecipeObj({
           title: data.data.recipe.title,
@@ -58,6 +57,8 @@ export default function useFetchSelectedRecipe() {
           servings: data.data.recipe.servings,
           ...(data.data.recipe.key && { key: data.data.recipe.key }),
         });
+        stylesCtx.functions.changeSelectedRecipeLoadingState(false);
+        console.log(stylesCtx.state.selectedRecipeLoadingState);
       };
       fetchRecipe();
     }

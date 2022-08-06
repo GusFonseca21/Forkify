@@ -8,6 +8,7 @@
   border-bottom-right-radius: inherit;
   background-color: #f1f2f6;
   overflow-y: scroll;
+  transition: all 300ms ease;
 }
 
 .user-recipe-mark {
