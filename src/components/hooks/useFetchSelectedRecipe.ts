@@ -27,7 +27,6 @@ export default function useFetchSelectedRecipe() {
 
   useEffect(() => {
     stylesCtx.functions.changeSelectedRecipeLoadingState(true);
-    console.log(stylesCtx.state.selectedRecipeLoadingState);
     if (recipeId !== undefined) {
       errorCtx.functions.changeFetchSelectedRecipeStatus(true);
       errorCtx.functions.changeFetchRecipesStatus(true);
@@ -58,7 +57,6 @@ export default function useFetchSelectedRecipe() {
           ...(data.data.recipe.key && { key: data.data.recipe.key }),
         });
         stylesCtx.functions.changeSelectedRecipeLoadingState(false);
-        console.log(stylesCtx.state.selectedRecipeLoadingState);
       };
       fetchRecipe();
     }

@@ -10,12 +10,15 @@ import Head from "next/head";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
+      <Head>
+        <link rel="shortcut icon" href="favicon.ico" />
+      </Head>
       <FetchRecipesContextProvider>
         <StateContextProvider>
           <ErrorContextProvider>
-              <Layout>
-                <Component {...pageProps} />
-              </Layout>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
           </ErrorContextProvider>
         </StateContextProvider>
       </FetchRecipesContextProvider>

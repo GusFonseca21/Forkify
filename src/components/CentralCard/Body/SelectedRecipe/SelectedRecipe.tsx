@@ -47,7 +47,6 @@ const SelectedRecipe = () => {
   const fetchFoundRecipesErrorMessage = errorCtx.states.fetchRecipesErrorMessage;
 
   const closeFoundRecipes = () => {
-    console.log("testé")
     if (foundRecipesControllerState) {
       stylesCtx.functions.changeFoundRecipesControllerState(false);
     }
