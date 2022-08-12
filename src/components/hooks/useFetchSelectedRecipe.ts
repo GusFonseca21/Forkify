@@ -26,7 +26,7 @@ export default function useFetchSelectedRecipe() {
   const recipeId = query.id;
 
   useEffect(() => {
-    stylesCtx.functions.changeSelectedRecipeLoadingState(true);
+    // stylesCtx.functions.changeSelectedRecipeLoadingState(true);
     if (recipeId !== undefined) {
       errorCtx.functions.changeFetchSelectedRecipeStatus(true);
       errorCtx.functions.changeFetchRecipesStatus(true);
@@ -56,7 +56,7 @@ export default function useFetchSelectedRecipe() {
           servings: data.data.recipe.servings,
           ...(data.data.recipe.key && { key: data.data.recipe.key }),
         });
-        stylesCtx.functions.changeSelectedRecipeLoadingState(false);
+        // stylesCtx.functions.changeSelectedRecipeLoadingState(false);
       };
       fetchRecipe();
     }
