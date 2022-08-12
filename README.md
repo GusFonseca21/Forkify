@@ -4,7 +4,11 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
  Este projeto foi insipirado em uma tarefa acadêmica de Jonas Schmedtmann, em seu curso na Udemy "The Complete JavaScript Course 2022: From Zero to Expert!". Foi construído do zero usando Next.js com Typescript (originalmente foi feito usando JavaScript puro). Forkify possui as seguintes funcionalidades: pesquisa de receitas através de nomes de pratos e ingredientes; aumento ou diminuição do número de porções, atualizando a quantidade de ingredientes; link para o site onde a receita foi originalmente postada, local em que se ensina a fazer a receita; marcar receitas como favoritas, facilitando a sua busca; adicionar novas receitas, que ficarão automaticamente marcadas como favoritas.
  
+ O site é responsivo e pode ser visualizado em celulares e tablets.
+ 
  Para manter a coerência do projeto, considerando que a API disponibilizada contém apenas receitas no idioma inglês, o aplicativo todo foi construído com base nesta mesma língua.
+ 
+ Este projeto também serviu para aumentar minha experiência em relação ao GitHub e à responsividade em celulares.
 
 ## Getting Started
 
